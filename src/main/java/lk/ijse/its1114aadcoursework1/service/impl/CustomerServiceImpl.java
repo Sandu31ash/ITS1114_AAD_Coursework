@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
-        customerDTO.setCCode(UUID.randomUUID().toString());
+        //customerDTO.setCCode(UUID.randomUUID().toString());
         return mapping.toCustomerDTO(customerRepo.save(mapping.toCustomer(customerDTO)));
     }
 

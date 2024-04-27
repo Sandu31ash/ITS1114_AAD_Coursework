@@ -3,10 +3,7 @@ package lk.ijse.its1114aadcoursework1.controller;
 import lk.ijse.its1114aadcoursework1.dto.CustomerDTO;
 import lk.ijse.its1114aadcoursework1.service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ public class Customer {
         return "Customer Health OK";
     }
 
+    @PostMapping("/save")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
         return customerService.saveCustomer(customerDTO);
     }

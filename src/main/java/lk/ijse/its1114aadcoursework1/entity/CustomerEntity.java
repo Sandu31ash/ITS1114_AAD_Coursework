@@ -1,8 +1,6 @@
 package lk.ijse.its1114aadcoursework1.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +17,11 @@ public class CustomerEntity implements SuperEntity {
     @Id
     private String cCode;
     private String cName;
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     private Date jDate;
-    private String level;
+    @Enumerated(EnumType.STRING)
+    private Level level;
     private int totPoints;
     private Date dob;
     private String add1;
