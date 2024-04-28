@@ -22,13 +22,13 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public SupplierDTO saveSupplier(SupplierDTO supplierDTO) {
-        supplierDTO.setSCode(UUID.randomUUID().toString());
+//        supplierDTO.setSCode(UUID.randomUUID().toString());
         return mapping.toSupplierDTO(supplierRepo.save(mapping.toSupplier(supplierDTO)));
     }
 
     @Override
     public List<SupplierDTO> getAllSupplier() {
-        return null;
+        return mapping.toSupplierDTOList(supplierRepo.findAll());
     }
 
 }

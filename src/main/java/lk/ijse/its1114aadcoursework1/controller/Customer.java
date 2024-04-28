@@ -23,8 +23,8 @@ public class Customer {
         return customerService.saveCustomer(customerDTO);
     }
 
+    @GetMapping("/get")
     public List<CustomerDTO> getAllCustomer(){
         return customerService.getAllCustomer();
     }
-
 }

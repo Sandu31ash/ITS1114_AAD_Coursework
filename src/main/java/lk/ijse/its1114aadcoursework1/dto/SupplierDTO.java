@@ -1,5 +1,6 @@
 package lk.ijse.its1114aadcoursework1.dto;
 
+import lk.ijse.its1114aadcoursework1.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class SupplierDTO {
 
-    private String sCode;
-    private String sName;
-    private String category;
+    private String supCode;
+    private String supName;
+    private Category category;
     private String add1;
     private String add2;
     private String add3;

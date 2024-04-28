@@ -16,8 +16,8 @@ import java.sql.Timestamp;
 @Entity
 public class SalesEntity implements SuperEntity{
 
-    @Id
     private String itemCode;
+    @Id
     private String orderNo;
     private String cusName;
     private String itemDesc;
@@ -31,3 +31,22 @@ public class SalesEntity implements SuperEntity{
     private String cashierName;
 
 }
+
+
+
+
+//
+//{
+//        "itemCode":"FSM00001",
+//        "orderNo":"HSO001",
+//        "cusName":"S.A.Senevirathne",
+//        "itemDesc":"Mens Formal Shoe",
+//        "size":8,
+//        "unitPrice":8990.00,
+//        "itemQty":1,
+//        "totPrice":8990.00,
+//        "purDate":"2024-04-28",
+//        "payMethod":"Cash",
+//        "addedPoints":2.5,
+//        "cashierName":"Vidushi"
+//        }

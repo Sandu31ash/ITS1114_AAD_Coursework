@@ -6,10 +6,7 @@ import lk.ijse.its1114aadcoursework1.dto.SupplierDTO;
 import lk.ijse.its1114aadcoursework1.service.CustomerService;
 import lk.ijse.its1114aadcoursework1.service.SupplierService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,10 +21,12 @@ public class Supplier {
         return "Supplier Health OK";
     }
 
+    @PostMapping("/save")
     public SupplierDTO saveSupplier(@RequestBody SupplierDTO supplierDTO){
         return supplierService.saveSupplier(supplierDTO);
     }
 
+    @GetMapping("/get")
     public List<SupplierDTO> getAllSupplier(){
         return supplierService.getAllSupplier();
     }

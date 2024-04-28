@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,11 +15,11 @@ import java.util.Date;
 @Entity
 public class CustomerEntity implements SuperEntity {
     @Id
-    private String cCode;
-    private String cName;
+    private String cusCode;
+    private String cusName;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    private Date jDate;
+    private Date joinedDate;
     @Enumerated(EnumType.STRING)
     private Level level;
     private int totPoints;
@@ -34,13 +34,12 @@ public class CustomerEntity implements SuperEntity {
     private Timestamp recPurData;
 }
 
-
 //{
-//        "cCode":"C001",
-//        "cName":"Ash",
-//        "gender":"female",
-//        "jDate": "2024-01-25",
-//        "level":"gold",
+//        "cusCode":"C001",
+//        "cusName":"Ash",
+//        "gender":"FEMALE",
+//        "joinedDate": "2024-01-25",
+//        "level":"GOLD",
 //        "totPoints":100,
 //        "dob":"2000-02-25",
 //        "add1":"1",
@@ -50,5 +49,5 @@ public class CustomerEntity implements SuperEntity {
 //        "add5":"1",
 //        "contact":"1",
 //        "email":"1",
-//        "recPurData":""
+//        "recPurData":"2024-04-28T06:16:48.607+00:00"
 //        }
