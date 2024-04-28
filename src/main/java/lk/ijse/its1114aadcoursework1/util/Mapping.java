@@ -1,12 +1,8 @@
 package lk.ijse.its1114aadcoursework1.util;
 
 import lk.ijse.its1114aadcoursework1.controller.Customer;
-import lk.ijse.its1114aadcoursework1.dto.CustomerDTO;
-import lk.ijse.its1114aadcoursework1.dto.SalesDTO;
-import lk.ijse.its1114aadcoursework1.dto.SupplierDTO;
-import lk.ijse.its1114aadcoursework1.entity.CustomerEntity;
-import lk.ijse.its1114aadcoursework1.entity.SalesEntity;
-import lk.ijse.its1114aadcoursework1.entity.SupplierEntity;
+import lk.ijse.its1114aadcoursework1.dto.*;
+import lk.ijse.its1114aadcoursework1.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +49,27 @@ public class Mapping {
     public List<SalesDTO> toSalesDTOList(List<SalesEntity> sales) {
         return mapper.map(sales, List.class);
     }
+
+    public EmployeeDTO toEmployeeDTO(EmployeeEntity employee) {
+        return mapper.map(employee, EmployeeDTO.class);
+    }
+    public EmployeeEntity toEmployee(EmployeeDTO employeeDTO) {
+        return mapper.map(employeeDTO, EmployeeEntity.class);
+    }
+    public List<EmployeeDTO> toEmployeeDTOList(List<EmployeeEntity> employee) {return mapper.map(employee, List.class);
+    }
+
+    public InventoryDTO toInventoryDTO(InventoryEntity inventory) {
+        return mapper.map(inventory, InventoryDTO.class);
+    }
+    public InventoryEntity toInventory(InventoryDTO inventoryDTO) {return mapper.map(inventoryDTO, InventoryEntity.class);}
+    public List<InventoryDTO> toInventoryDTOList(List<InventoryEntity> inventory) {return mapper.map(inventory, List.class);}
+
+
+    public AdminPanelDTO toAdminPanelDTO(AdminPanelEntity adminPanel) {return mapper.map(adminPanel, AdminPanelDTO.class);}
+    public AdminPanelEntity toAdminPanel(AdminPanelDTO adminPanelDTO) {return mapper.map(adminPanelDTO, AdminPanelEntity.class);}
+    public List<AdminPanelDTO> toAdminPanelDTOList(List<AdminPanelEntity> adminPanel) {return mapper.map(adminPanel, List.class);}
+
 
     //UserMapping
 //    public UserEntity toUserEntity(UserDTO userDTO){

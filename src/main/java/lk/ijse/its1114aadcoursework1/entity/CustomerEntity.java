@@ -51,3 +51,7 @@ public class CustomerEntity implements SuperEntity {
 //        "email":"1",
 //        "recPurData":"2024-04-28T06:16:48.607+00:00"
 //        }
+
+
+
+//entity --> dto --> repo --> service --> mapping --> impl --> controller
