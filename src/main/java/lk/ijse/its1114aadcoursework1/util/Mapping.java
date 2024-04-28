@@ -71,6 +71,11 @@ public class Mapping {
     public List<AdminPanelDTO> toAdminPanelDTOList(List<AdminPanelEntity> adminPanel) {return mapper.map(adminPanel, List.class);}
 
 
+    public UserDTO toUserDTO(UserEntity user) {return mapper.map(user, UserDTO.class);}
+    public UserEntity toUser(UserDTO userDTO) {return mapper.map(userDTO, UserEntity.class);}
+    public List<UserDTO> toUserDTOList(List<UserEntity> user) {return mapper.map(user, List.class);}
+
+
     //UserMapping
 //    public UserEntity toUserEntity(UserDTO userDTO){
 //        return mapper.map(userDTO, UserEntity.class);
