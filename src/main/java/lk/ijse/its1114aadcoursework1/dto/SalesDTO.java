@@ -11,9 +11,9 @@ import java.sql.Timestamp;
 @Data
 public class SalesDTO {
 
-    private String itemCode;
     private String orderNo;
     private String cusName;
+    private String itemCode;
     private String itemDesc;
     private int size;
     private double unitPrice;

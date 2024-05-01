@@ -16,10 +16,10 @@ import java.sql.Timestamp;
 @Entity
 public class SalesEntity implements SuperEntity{
 
-    private String itemCode;
     @Id
     private String orderNo;
     private String cusName;
+    private String itemCode;
     private String itemDesc;
     private int size;
     private double unitPrice;
@@ -35,7 +35,7 @@ public class SalesEntity implements SuperEntity{
 
 
 
-//
+
 //{
 //        "itemCode":"FSM00001",
 //        "orderNo":"HSO001",

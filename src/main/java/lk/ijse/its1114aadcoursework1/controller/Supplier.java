@@ -6,6 +6,8 @@ import lk.ijse.its1114aadcoursework1.dto.SupplierDTO;
 import lk.ijse.its1114aadcoursework1.service.CustomerService;
 import lk.ijse.its1114aadcoursework1.service.SupplierService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +28,27 @@ public class Supplier {
         return supplierService.saveSupplier(supplierDTO);
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getAll")
     public List<SupplierDTO> getAllSupplier(){
         return supplierService.getAllSupplier();
     }
+
+    @GetMapping("get")
+    public ResponseEntity<?> getSupplierBySupCode(@RequestHeader String supCode){
+        SupplierDTO supplierDTO = supplierService.getSupplierBySupCode(supCode);
+        return ResponseEntity.ok(supplierDTO);
+    }
+
+    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateSupplier(@RequestBody SupplierDTO supplierDTO) {
+        supplierService.updateSupplier(supplierDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteSupplier(@RequestHeader String supCode){
+        supplierService.deleteSupplier(supCode);
+        return ResponseEntity.ok().build();
+    }
+
 }

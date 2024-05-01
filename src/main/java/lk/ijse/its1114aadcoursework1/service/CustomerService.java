@@ -7,7 +7,7 @@ import java.util.List;
 public interface CustomerService {
     CustomerDTO saveCustomer(CustomerDTO customerDTO);
     List<CustomerDTO> getAllCustomer();
-//    CustomerDTO getSelectedCustomer(String cCode);
-//    void deleteCustomer(String cCode);
-//    void updateCustomer(String cCode, CustomerDTO customerDTO);
+    CustomerDTO getCustomerByCusCode(String cusCode);
+    void updateCustomer(CustomerDTO customerDTO);
+    void deleteCustomer(String customerCode);
 }

@@ -8,8 +8,8 @@ public interface UserService {
 
     UserDTO saveUser(UserDTO userDTO);
     List<UserDTO> getAllUser();
-//    UserDTO getSelectedUser(String cCode);
-//    void deleteUser(String cCode);
-//    void updateUser(String cCode, UserDTO userDTO);
+    UserDTO getUserByEmail(String email);
+    void updateUser(UserDTO userDTO);
+    void deleteUser(String email);
 
 }

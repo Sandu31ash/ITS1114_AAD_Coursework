@@ -7,7 +7,7 @@ import java.util.List;
 public interface InventoryService {
     InventoryDTO saveInventory(InventoryDTO inventoryDTO);
     List<InventoryDTO> getAllInventory();
-//    InventoryDTO getSelectedInventory(String itemCode);
-//    void deleteInventory(String itemCode);
-//    void updateInventory(String itemCode, InventoryDTO inventoryDTO);
+    InventoryDTO getInventoryByItemCode(String itemCode);
+    void updateInventory(InventoryDTO inventoryDTO);
+    void deleteInventory(String invCode);
 }
