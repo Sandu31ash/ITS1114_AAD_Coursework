@@ -22,6 +22,7 @@ public class Customer {
 
     @PostMapping("/save")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
+        System.out.println(customerDTO);
         return customerService.saveCustomer(customerDTO);
     }
 

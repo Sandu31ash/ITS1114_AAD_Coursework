@@ -1,13 +1,16 @@
 package lk.ijse.its1114aadcoursework1.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +21,10 @@ public class SalesEntity implements SuperEntity{
 
     @Id
     private String orderNo;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "cusName", referencedColumnName = "customerName")
+//    @JsonBackReference
+//    private CustomerEntity customerEntity;
     private String cusName;
     private String itemCode;
     private String itemDesc;
@@ -29,6 +36,13 @@ public class SalesEntity implements SuperEntity{
     private String payMethod;
     private double addedPoints;
     private String cashierName;
+
+//    @OneToMany(fetch = FetchType.EAGER,mappedBy = "orders", cascade = CascadeType.ALL) @Fetch(FetchMode.JOIN)
+//    @JsonManagedReference
+//    private List<OrderItem> orderItems;
+
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Orders> orders;
 
 }
 

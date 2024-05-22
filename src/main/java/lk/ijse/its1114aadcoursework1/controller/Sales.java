@@ -33,7 +33,7 @@ public class Sales {
     }
 
     @GetMapping("get")
-    public ResponseEntity<?> getSalesByCusCode(@RequestHeader String orderNo){
+    public ResponseEntity<?> getSalesByOrderNo(@RequestHeader String orderNo){
         SalesDTO salesDTO = salesService.getSalesByOrderNo(orderNo);
         return ResponseEntity.ok(salesDTO);
     }
