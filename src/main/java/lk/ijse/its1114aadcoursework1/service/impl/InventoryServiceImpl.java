@@ -1,6 +1,7 @@
 package lk.ijse.its1114aadcoursework1.service.impl;
 
 import jakarta.transaction.Transactional;
+import lk.ijse.its1114aadcoursework1.controller.Inventory;
 import lk.ijse.its1114aadcoursework1.dao.InventoryRepo;
 import lk.ijse.its1114aadcoursework1.dto.InventoryDTO;
 import lk.ijse.its1114aadcoursework1.entity.CustomerEntity;
@@ -10,7 +11,9 @@ import lk.ijse.its1114aadcoursework1.util.Mapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -29,6 +32,15 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public List<InventoryDTO> getAllInventory() {
         return mapping.toInventoryDTOList(inventoryRepo.findAll());
+    }
+
+    @Override
+    public List<String> getAllItemDesc() {
+        List<String> itemDescs = new ArrayList<>();
+        for (InventoryEntity inventory : inventoryRepo.findAll()) {
+            itemDescs.add(inventory.getItemDesc());
+        }
+        return itemDescs;
     }
 
     @Override

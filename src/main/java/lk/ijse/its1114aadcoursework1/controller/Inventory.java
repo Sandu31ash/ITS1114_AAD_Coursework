@@ -1,7 +1,7 @@
 package lk.ijse.its1114aadcoursework1.controller;
 
-import lk.ijse.its1114aadcoursework1.dto.CustomerDTO;
 import lk.ijse.its1114aadcoursework1.dto.InventoryDTO;
+import lk.ijse.its1114aadcoursework1.entity.InventoryEntity;
 import lk.ijse.its1114aadcoursework1.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -47,6 +47,11 @@ public class Inventory {
     public ResponseEntity<?> deleteInventory(@RequestHeader String itemCode){
         inventoryService.deleteInventory(itemCode);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("getAllItemDesc")
+    public List<String> getAllItemDesc() {
+        return inventoryService.getAllItemDesc();
     }
 
 }
