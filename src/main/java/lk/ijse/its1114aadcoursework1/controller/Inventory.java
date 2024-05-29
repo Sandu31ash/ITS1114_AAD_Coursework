@@ -31,7 +31,7 @@ public class Inventory {
         return inventoryService.getAllInventory();
     }
 
-    @GetMapping("get")
+    @GetMapping("/get")
     public ResponseEntity<?> getInventoryByItemCode(@RequestHeader String invCode){
         InventoryDTO inventoryDTO = inventoryService.getInventoryByItemCode(invCode);
         return ResponseEntity.ok(inventoryDTO);
@@ -49,7 +49,7 @@ public class Inventory {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("getAllItemDesc")
+    @GetMapping("/getAllItemDesc")
     public List<String> getAllItemDesc() {
         return inventoryService.getAllItemDesc();
     }

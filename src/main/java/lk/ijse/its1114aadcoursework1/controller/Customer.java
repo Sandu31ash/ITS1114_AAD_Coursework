@@ -31,7 +31,7 @@ public class Customer {
         return customerService.getAllCustomer();
     }
 
-    @GetMapping("get")
+    @GetMapping("/get")
     public ResponseEntity<?> getCustomerByCusCode(@RequestHeader String cusCode){
         CustomerDTO customerDTO = customerService.getCustomerByCusCode(cusCode);
         return ResponseEntity.ok(customerDTO);
