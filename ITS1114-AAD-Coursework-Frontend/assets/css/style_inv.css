@@ -1,0 +1,45 @@
+
+#invBtnReset:hover{
+    background-color: #BBA6D6;
+    color: white;
+    border-color: #BBA6D6;
+    letter-spacing: 4px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+}
+
+
+#invBtnDelete:hover{
+    background-color: #BBA6D6;
+    color: white;
+    border-color: #BBA6D6;
+    letter-spacing: 4px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+}
+
+
+#invBtnUpdate:hover{
+    background-color: #BBA6D6;
+    color: white;
+    border-color: #BBA6D6;
+    letter-spacing: 4px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+}
+
+
+#invBtnSave:hover{
+    background-color: #BBA6D6;
+    color: white;
+    border-color: #BBA6D6;
+    letter-spacing: 4px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+}
+
+#invBtnRow1

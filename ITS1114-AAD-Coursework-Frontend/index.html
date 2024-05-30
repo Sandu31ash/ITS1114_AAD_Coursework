@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>HELLO SHOES - Step Into Bliss..</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style_inv.css">
+    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="stylesheet" href="./assets/bootstrap/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&family=Jersey+10&family=Poetsen+One&family=Protest+Revolution&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<header id="header1">
+<!--    <nav class="navbar bg-body-tertiary fixed-top">-->
+<!--        <div class="container-fluid">-->
+<!--            <a class="navbar-brand" href="#" style="font-weight: bold; color: #163052; font-family: 'Tilt Neon', sans-serif;">-->
+<!--                <img src="/assets/images/logo.png" alt="Logo" width="75" height="40" class="d-inline-block align-text-top">-->
+<!--            </a>-->
+
+    <div id="navBar">
+    <ul class="nav justify-content-center">
+        <li class="nav-item nav-underline">
+            <a class="nav-link" aria-current="page" href="#" id="homeSec">Home</a>
+        </li>
+        <li class="nav-item nav-underline">
+            <a class="nav-link" href="#" id="saleSec">Sales</a>
+        </li>
+        <li class="nav-item nav-underline">
+            <a class="nav-link" href="#" id="supSec">Suppliers</a>
+        </li>
+        <li class="nav-item nav-underline">
+            <a class="nav-link" href="#" id="cusSec">Customers</a>
+        </li>
+        <li class="nav-item nav-underline">
+            <a class="nav-link" href="#" id="empSec">Employees</a>
+        </li>
+        <li class="nav-item nav-underline">
+            <a class="nav-link" href="#" id="invSec">Inventory</a>
+        </li>
+        <li class="nav-item nav-underline">
+            <a class="nav-link" href="#" id="admSec">Admin Panel</a>
+        </li>
+        <div id="divLogout">
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="logout">Logout</a>
+        </li>
+        </div>
+    </ul>
+    </div>
+<!--        </div>-->
+
+<!--    </nav>-->
+</header>
+
+<div class="container" id="con1">
+    <img src="assets/images/login.png" alt="" id="imgLogin">
+
+    <form class="contact-form row" id="loginForm">
+        <div class="form-floating mb-5">
+            <input type="text" class="form-control" id="email" placeholder="Email" autocomplete="off">
+            <label for="email">Email</label>
+        </div>
+        <div class="form-floating mb-5">
+            <input type="password" class="form-control" id="pw" placeholder="Password" autocomplete="off">
+            <label for="pw">Password</label>
+        </div>
+<!--        <button type="button" class="btn btn-outline-light btn-sm">Login</button>-->
+<!--        <button class="button-40" role="button">-->
+<!--&lt;!&ndash;            <span class="text">Login</span>&ndash;&gt;-->
+<!--            Login-->
+<!--        </button>-->
+        <button type="button" id="btnLogin">Login</button>
+
+
+    </form>
+</div>
+
+<div class="container" id="con2">
+    <img src="assets/images/home1.png" alt="" id="imgHome">
+</div>
+
+<div class="container" id="con3">
+    <img src="assets/images/sales2.png" alt="" id="imgSales">
+
+    <div class="row" id="orderRow">
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="col1">
+            <form action="" method="post" target="_blank" id="orderForm">
+                <div class="form-floating mb-3">
+<!--                    <input class="form-control" type="text" id="orderNo" aria-label="readonly input example" readonly>-->
+                    <input class="form-control" type="text" id="orderNo">
+                    <label for="orderNo">Order No:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="cusNameSales" placeholder="Customer" autocomplete="off">
+                    <label for="cusNameSales">Customer</label>
+                </div>
+                <div class="form-floating mb-3">
+<!--                    <input type="text" class="form-control" id="itemDesc" placeholder="Item Desc" autocomplete="off">-->
+                    <select class="form-select" id="itemCode">
+                        <option selected></option>
+                    </select>
+                    <label for="itemCode">Item Code</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="itemDesc" placeholder="Item Desc" autocomplete="off">
+                    <label for="itemDesc">Item Desc</label>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="col2">
+
+            <form action="" method="post" target="_blank">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="size" placeholder="Size" autocomplete="off">
+                    <label for="size">Size</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="unitPrice" placeholder="Unit Price" autocomplete="off">
+                    <label for="unitPrice">Unit Price</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="itemQty" placeholder="Item Qty" autocomplete="off">
+                    <label for="itemQty">Item Qty</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="totPrice" placeholder="Total Price" autocomplete="off" aria-label="readonly input example" readonly>
+                    <label for="totPrice">Tot Price</label>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12"  id="col3">
+
+            <form action="" method="post" target="_blank">
+
+                <div class="form-floating mb-3">
+                    <input type="datetime-local" class="form-control" id="purDate" placeholder="Purchase Date" autocomplete="off">
+                    <label for="purDate">Purchase Date</label>
+                </div>
+                <div class="form-floating mb-3">
+<!--                    <input type="text" class="form-control" id="payMethod" placeholder="Payment Method" autocomplete="off">-->
+                    <select class="form-select" aria-label="Default select example" id="payMethod">
+                        <option selected>Cash</option>
+                        <option>Card</option>
+                    </select>
+                    <label for="payMethod">Payment Method</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="addedPoints" placeholder="Added Points" autocomplete="off">
+                    <label for="addedPoints">Added Points</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="cashier" placeholder="Cashier Name" autocomplete="off">
+                    <label for="cashier">Cashier Name</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col col-xxl-1 col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12"  id="col4">
+            <div id="salesBtn" class="mt-5 mb-1">
+                <div class="row" id="btnRow1">
+                <button type="button" class="btn btn-outline-secondary btn-sm btns" id="btnReset">Reset</button>
+                </div>
+                <div class="row" id="btnRow2">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" disabled id="btnDelete">Delete</button>
+                </div>
+                <div class="row" id="btnRow3">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="btnUpdate">Update</button>
+                </div>
+                <div class="row" id="btnRow4">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="btnSave">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-hover table-striped table-light" id="salesTb">
+            <thead>
+            <tr>
+                <th scope="col">Order No</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Item Code</th>
+                <th scope="col">Item Desc</th>
+                <th scope="col">Size</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Item Qty</th>
+                <th scope="col">Tot Price</th>
+                <th scope="col">Pur Date</th>
+                <th scope="col">Pay Method</th>
+                <th scope="col">Added Points</th>
+                <th scope="col">Cashier Name</th>
+            </tr>
+            </thead>
+            <tbody id="sales_tBody" class="table-group-divider">
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<div class="container" id="con4">
+    <img src="assets/images/sales2.png" alt="" id="imgSupplier">
+
+    <div class="row" id="supRow">
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="supCol1">
+            <form action="" method="post" target="_blank" id="supplierForm">
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="supCode">
+                    <label for="supCode">Supplier Code</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supName" placeholder="Supplier Name" autocomplete="off">
+                    <label for="supName">Supplier</label>
+                </div>
+                <div class="form-floating mb-3">
+<!--                    <input type="text" class="form-control" id="category" placeholder="Category" autocomplete="off">-->
+                    <select class="form-select" id="category" placeholder="Select Category" >
+                        <option value="INTERNATIONAL">International</option>
+                        <option value="LOCAL">Local</option>
+                    </select>
+                    <label for="category">Category</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supAdd1" placeholder="Add. Line 1" autocomplete="off">
+                    <label for="supAdd1">Add. Line 1</label>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="supCol2">
+
+            <form action="" method="post" target="_blank">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supAdd2" placeholder="Add. Line 2" autocomplete="off">
+                    <label for="supAdd2">Add. Line 2</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supAdd3" placeholder="Add. Line 3" autocomplete="off">
+                    <label for="supAdd3">Add. Line 3</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supAdd4" placeholder="Add. Line 4" autocomplete="off">
+                    <label for="supAdd4">Add. Line 4</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supAdd5" placeholder="Add. Line 5" autocomplete="off">
+                    <label for="supAdd5">Add. Line 5</label>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12"  id="supCol3">
+
+            <form action="" method="post" target="_blank">
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supAdd6" placeholder="Add. Line 6" autocomplete="off">
+                    <label for="supAdd6">Add. Line 6</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" id="contact1" placeholder="Contact 1" autocomplete="off">
+                    <label for="contact1">Contact 1</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" id="contact2" placeholder="Contact 2" autocomplete="off">
+                    <label for="contact2">Contact 2</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="emailSup" placeholder="Email" autocomplete="off">
+                    <label for="emailSup">Email</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col col-xxl-1 col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12"  id="supCol4">
+            <div id="supBtn" class="mt-5 mb-1">
+                <div class="row" id="supBtnRow1">
+                    <button type="reset" class="btn btn-outline-secondary btn-sm" id="supBtnReset">Reset</button>
+                </div>
+                <div class="row" id="supBtnRow2">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="supBtnDelete">Delete</button>
+                </div>
+                <div class="row" id="supBtnRow3">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="supBtnUpdate">Update</button>
+                </div>
+                <div class="row" id="supBtnRow4">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="supBtnSave">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-hover table-striped table-light" id="supTb">
+            <thead>
+            <tr>
+                <th scope="col">Sup. Code</th>
+                <th scope="col">Supplier</th>
+                <th scope="col">Category</th>
+                <th scope="col">Add1</th>
+                <th scope="col">Add2</th>
+                <th scope="col">Add3</th>
+                <th scope="col">Add4</th>
+                <th scope="col">Add5</th>
+                <th scope="col">Add6</th>
+                <th scope="col">Con1</th>
+                <th scope="col">Con2</th>
+                <th scope="col">Email</th>
+            </tr>
+            </thead>
+            <tbody id="supp_tBody" class="table-group-divider">
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<div class="container" id="con5">
+    <img src="assets/images/sales2.png" alt="" id="imgCustomer">
+
+    <div class="row" id="cusRow">
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="cusCol1">
+            <form action="" method="post" target="_blank" id="customerForm">
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="cusCode" readonly>
+                    <label for="cusCode">Customer Code</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="cusName" placeholder="Supplier Name" autocomplete="off">
+                    <label for="cusName">Customer</label>
+                </div>
+                <fieldset class="mb-3 mt-2" id="fieldSet" style="border: 1px solid #9C82BE; padding: 1px; margin: 1px;">
+                    <legend id="legend" style="font-size: 1vw">Gender</legend>
+<!--                    <div class="form-check">-->
+                        <input class="form-check-input" type="radio" value="MALE" name="gender" id="male">
+                        <label class="form-check-label" for="male">
+                            Male
+                        </label>
+<!--                    </div>-->
+<!--                    <div class="form-check">-->
+                        <input class="form-check-input" type="radio" value="FEMALE" name="gender" id="female">
+                        <label class="form-check-label" for="female">
+                            Female
+                        </label>
+<!--                    </div>-->
+                </fieldset>
+
+<!--                <div class="btn-group-vertical-sm mb-sm-0" role="group" aria-label="Basic radio toggle button group">-->
+<!--                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>-->
+<!--                    <label class="btn btn-outline-primary" for="btnradio1">Male</label>-->
+
+<!--                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">-->
+<!--                    <label class="btn btn-outline-primary" for="btnradio2">Female</label>-->
+<!--                </div>-->
+
+                <div class="form-floating mt-0">
+                    <input type="date" class="form-control" id="joinedDate" placeholder="Joined Date" autocomplete="off">
+                    <label for="joinedDate">Joined Date</label>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="cusCol2">
+
+            <form action="" method="post" target="_blank">
+                <div class="form-floating mb-3">
+<!--                    <input type="text" class="form-control" id="level" placeholder="level" autocomplete="off">-->
+                    <select class="form-select" id="level">
+                        <option value="GOLD">Gold</option>
+                        <option value="SILVER">Silver</option>
+                        <option value="BRONZE">Bronze</option>
+                        <option value="NEW">New</option>
+                    </select>
+                    <label for="level">Level</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="totPoints" placeholder="Tot Points" autocomplete="off">
+                    <label for="totPoints">Tot Points</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="dob" placeholder="DOB" autocomplete="off">
+                    <label for="dob">DOB</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="cusAdd1" placeholder="Add. Line 1" autocomplete="off">
+                    <label for="cusAdd1">Add. Line 1</label>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12"  id="cusCol3">
+
+            <form action="" method="post" target="_blank">
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="cusAdd2" placeholder="Add. Line 2" autocomplete="off">
+                    <label for="cusAdd2">Add. Line 2</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="cusAdd3" placeholder="Add. Line 3" autocomplete="off">
+                    <label for="cusAdd3">Add. Line 3</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="cusAdd4" placeholder="Add. Line 4" autocomplete="off">
+                    <label for="cusAdd4">Add. Line 4</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="cusAdd5" placeholder="Add. Line 5" autocomplete="off">
+                    <label for="cusAdd5">Add. Line 5</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col col-xxl-1 col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12"  id="cusCol4">
+            <form action="" method="post" target="_blank">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="cusContact" placeholder="Contact" autocomplete="off">
+                <label for="cusContact">Contact</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="cusEmail" placeholder="Email" autocomplete="off">
+                <label for="cusEmail">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="datetime-local" class="form-control" id="recPurData" placeholder="Recent Purchase Data" autocomplete="off">
+                <label for="recPurData">Recent Purchased Data</label>
+            </div>
+
+            <div id="cusBtn" class="mt-1 mb-5">
+                <div class="row row-cols-4" id="cusBtnRow1">
+                    <button type="reset" class="btn btn-outline-secondary btn-sm" id="cusBtnReset">Reset</button>
+<!--                </div>-->
+<!--                <div class="row" id="cusBtnRow2">-->
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="cusBtnDelete">Delete</button>
+<!--                </div>-->
+<!--                <div class="row" id="cusBtnRow3">-->
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="cusBtnUpdate">Update</button>
+<!--                </div>-->
+<!--                <div class="row" id="cusBtnRow4">-->
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="cusBtnSave">Save</button>
+                </div>
+            </div>
+            </form>
+        </div>
+
+        <table class="table table-bordered table-hover table-striped table-light" id="cusTb">
+            <thead>
+            <tr>
+                <th scope="col">Cus. Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Joined Date</th>
+                <th scope="col">Level</th>
+                <th scope="col">Tot Points</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Add1</th>
+                <th scope="col">Add2</th>
+                <th scope="col">Add3</th>
+                <th scope="col">Add4</th>
+                <th scope="col">Add5</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Email</th>
+                <th scope="col">RecPurData</th>
+
+            </tr>
+            </thead>
+            <tbody id="cus_tBody" class="table-group-divider">
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<div class="container" id="con6">
+    <img src="assets/images/sales2.png" alt="" id="imgEmployee">
+
+    <div class="row" id="empRow">
+        <div class="col-sm-2" id="empCol1">
+            <form action="" method="post" target="_blank" id="employeeForm">
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="empCode" readonly>
+                    <label for="empCode">Employee Code</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="empName" placeholder="Employee Name" autocomplete="off">
+                    <label for="empName">Employee</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control form-control" id="empPic" type="file">
+                    <label for="empPic">Employee Profile Pic</label>
+                </div>
+
+                <div class="form-floating mt-0">
+<!--                    <input type="text" class="form-control" id="empGender" placeholder="Joined Date" autocomplete="off">-->
+                    <select class="form-select" id="empGender" aria-label="Default select example">
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+                    <label for="empGender">Gender</label>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="col-sm-2" id="empCol2">
+
+            <form action="" method="post" target="_blank">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="empStatus" placeholder="status" autocomplete="off">
+                    <label for="empStatus">Civil Status</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="designation" placeholder="Designation" autocomplete="off">
+                    <label for="designation">Designation</label>
+                </div>
+                <div class="form-floating mb-3">
+<!--                    <input type="text" class="form-control" id="accessRole" placeholder="Access Role" autocomplete="off">-->
+                    <select class="form-select" id="accessRole" aria-label="Default select example">
+                        <option value="ADMIN">Admin</option>
+                        <option value="USER">User</option>
+                    </select>
+                    <label for="accessRole">Access Role</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="empDob" placeholder="DOB" autocomplete="off">
+                    <label for="empDob">DOB</label>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col-sm-2"  id="empCol3">
+
+            <form action="" method="post" target="_blank">
+
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="dateOfJoin" placeholder="Date of Join" autocomplete="off">
+                    <label for="dateOfJoin">Date of Join</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="branch" placeholder="Attached Branch" autocomplete="off">
+                    <label for="branch">Attached Branch</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="empAdd1" placeholder="Add. Line 1" autocomplete="off">
+                    <label for="empAdd1">Add. Line 1</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="empAdd2" placeholder="Add. Line 2" autocomplete="off">
+                    <label for="empAdd2">Add. Line 2</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-2"  id="empCol4">
+
+            <form action="" method="post" target="_blank">
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="empAdd3" placeholder="Add. Line 3" autocomplete="off">
+                    <label for="empAdd3">Add. Line 3</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="empAdd4" placeholder="Add. Line 4" autocomplete="off">
+                    <label for="empAdd4">Add. Line 4</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="empAdd5" placeholder="Add. Line 5" autocomplete="off">
+                    <label for="empAdd5">Add. Line 5</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" id="empContact" placeholder="Contact" autocomplete="off">
+                    <label for="empContact">Contact</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-2"  id="empCol5">
+            <form action="" method="post" target="_blank">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="empEmail" placeholder="Email" autocomplete="off">
+                    <label for="empEmail">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inCaseOfEmg" placeholder="Inform In Case Of Emergency" autocomplete="off">
+                    <label for="inCaseOfEmg">Inform In Case Of Emergency</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" id="emergContact" placeholder="Emergency Contact" autocomplete="off">
+                    <label for="emergContact">Emergency Contact</label>
+                </div>
+
+                <div id="empBtn" class="mt-1 mb-5">
+                    <div class="row row-cols-4" id="empBtnRow1">
+                        <button type="reset" class="btn btn-outline-secondary btn-sm" id="empBtnReset">Reset</button>
+                        <!--                </div>-->
+                        <!--                <div class="row" id="cusBtnRow2">-->
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="empBtnDelete">Delete</button>
+                        <!--                </div>-->
+                        <!--                <div class="row" id="cusBtnRow3">-->
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="empBtnUpdate">Update</button>
+                        <!--                </div>-->
+                        <!--                <div class="row" id="cusBtnRow4">-->
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="empBtnSave">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <table class="table table-bordered table-hover table-striped table-light" id="empTb">
+            <thead>
+            <tr>
+                <th scope="col">Emp Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Pro pic</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Status</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Access Role</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Date of Join</th>
+                <th scope="col">Att.Branch</th>
+                <th scope="col">Add1</th>
+                <th scope="col">Add2</th>
+                <th scope="col">Add3</th>
+                <th scope="col">Add4</th>
+                <th scope="col">Add5</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Email</th>
+                <th scope="col">In Case of Emerg.</th>
+                <th scope="col">Emerg. Contact</th>
+
+            </tr>
+            </thead>
+            <tbody id="emp_tBody" class="table-group-divider">
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<div class="container" id="con7">
+    <img src="assets/images/sales2.png" alt="" id="imgInv">
+
+    <div class="row" id="invRow">
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="invCol1">
+            <form action="" method="post" target="_blank" id="inventoryForm">
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="itemCodeInv">
+                    <label for="itemCodeInv">Item Code</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="itemDescInv" placeholder="Item Desc" autocomplete="off">
+                    <label for="itemDescInv">Item Desc</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control form-control" id="itemPic" type="file">
+                    <label for="itemPic">Item Pic</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="itemCategory" placeholder="Category" autocomplete="off">
+                    <label for="itemCategory">Category</label>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="invCol2">
+
+            <form action="" method="post" target="_blank">
+                <div class="row" id="invRow1">
+                <div class="col-sm-1" id="invColSize">
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="sizeInv" placeholder="Size" autocomplete="off">
+                        <label for="sizeInv">Size</label>
+                    </div>
+                </div>
+                <div class="col-sm-2" id="invColQty">
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="qty" placeholder="qty" autocomplete="off">
+                        <label for="qty">Qty</label>
+                    </div>
+                </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supCodeInv" placeholder="Supplier Code" autocomplete="off">
+                    <label for="supCodeInv">Supplier Code</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="supNameInv" placeholder="Supplier Name" autocomplete="off">
+                    <label for="supNameInv">Supplier</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="unitPriceSale" placeholder="Unit Price Sale" autocomplete="off">
+                    <label for="unitPriceSale">Unit Price Sale</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12"  id="invCol3">
+
+            <form action="" method="post" target="_blank">
+
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="unitPriceBuy" placeholder="Unit Price Buy" autocomplete="off">
+                    <label for="unitPriceBuy">Unit Price Buy</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="expProfit" placeholder="Expect Profit" autocomplete="off">
+                    <label for="expProfit">Expect Profit</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="profitMargin" placeholder="Profit Margin" autocomplete="off">
+                    <label for="profitMargin">Profit Margin</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="status" placeholder="Status" autocomplete="off">
+                    <label for="status">Status</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col col-xxl-1 col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12"  id="invCol4">
+            <div id="invBtn" class="mt-5 mb-1">
+                <div class="row" id="invBtnRow1">
+                    <button type="reset" class="btn btn-outline-secondary btn-sm" id="invBtnReset">Reset</button>
+                </div>
+                <div class="row" id="invBtnRow2">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="invBtnDelete">Delete</button>
+                </div>
+                <div class="row" id="invBtnRow3">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="invBtnUpdate">Update</button>
+                </div>
+                <div class="row" id="invBtnRow4">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="invBtnSave">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-hover table-striped table-light" id="invTb">
+            <thead>
+            <tr>
+                <th scope="col">Item Code</th>
+                <th scope="col">Item Desc</th>
+                <th scope="col">Item Pic</th>
+                <th scope="col">Category</th>
+                <th scope="col">Size</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Supp Code</th>
+                <th scope="col">Supplier</th>
+                <th scope="col">Unit Price Sale</th>
+                <th scope="col">Unit Price Buy</th>
+                <th scope="col">Exp. Profit</th>
+                <th scope="col">Profit Margin</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody id="inv_tBody" class="table-group-divider">
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<div class="container" id="con8">
+    <img src="assets/images/admin.png" alt="" id="imgAdmin">
+
+    <div class="row" id="adminRow">
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="adminCol1">
+            <div id="frame1">
+                <div class="form-floating" id="adminDateDiv">
+                    <input type="date" class="form-control" id="adminDate" placeholder="Date" autocomplete="off">
+                    <label for="adminDate">Date</label>
+                </div>
+            </div>
+            <div id="frame2">
+                <div id="frame21">
+                    <h2>Total Sales</h2>
+                    <img src="assets/images/sales_icon.png" alt="">
+                </div>
+                <h1 id="totSales">25</h1>
+            </div>
+            <div id="frame3">
+                <div id="frame31">
+                    <h2>Total Profit</h2>
+                    <img src="assets/images/profit_icon.png" alt="">
+                </div>
+                <h1>25</h1>
+            </div>
+        </div>
+        <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="adminCol2">
+            <div id="frame4">
+                <div id="frame41">
+                    <h2>Most Sale Item</h2>
+                    <img src="assets/images/shoe_icon.png" alt="">
+                </div>
+                <h1>25</h1>
+            </div>
+            <div id="frame5">
+                <div id="frame51">
+                    <h2>Most Sale Item Qty</h2>
+                    <img src="assets/images/qty_icon.png" alt="">
+                </div>
+                <h1>25</h1>
+            </div>
+        </div>
+        <div class="col col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" id="adminCol3">
+            <div id="frame6">
+            <img src="/assets/images/mens_formal_shoe.jpg" class="img-fluid" alt="" id="mostSalePic">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--////////////Link Js dependencies//////////-->
+
+<script src="./assets/js/lib/jquery.min.js"></script>
+
+<!--<script type="module" src="controller/CustomerController.js"></script>-->
+<!--<script type="module" src="./controller/EmployeeController.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<!--    <script src="sweetalert2/dist/sweetalert2.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+
+<script src="./controller/CustomerController.js"></script>
+<script src="./controller/EmployeeController.js"></script>
+<script src="./controller/SupplierController.js"></script>
+<script src="./controller/SalesController.js"></script>
+<script src="./controller/InventoryController.js"></script>
+<script src="./controller/AdminPanelController.js"></script>
+
+<!--//////////////////Manage Navigations////////////////////-->
+
+<script>
+    // AOS.init();
+
+    $("#con3").css("display", "none");
+    $("#con2").css("display", "none");
+    $("#header1").css("display", "none");
+    $("#con4").css("display", "none");
+    $("#con5").css("display", "none");
+    $("#con6").css("display", "none");
+    $("#con7").css("display", "none");
+    $("#con8").css("display", "none");
+
+    $(".nav-link").eq(0).css("color" , "#7852A9");
+    $(".nav-link").eq(0).css("font-weight" , "bold");
+
+
+    $("#btnLogin").on('click' , ()=>{
+        $("#con1").css("display", "none");
+        $("#con2").css("display", "block");
+        $("#header1").css("display", "block");
+        $("#con3").css("display", "none");
+        $("#con4").css("display", "none");
+        $("#con5").css("display", "none");
+        $("#con6").css("display", "none");
+        $("#con7").css("display", "none");
+        $("#con8").css("display", "none");
+
+        $(".nav-link").eq(0).css("color" , "#7852A9");
+        $(".nav-link").eq(0).css("font-weight" , "bold");
+
+        $(".nav-link").eq(1).css("color" , "white");
+        $(".nav-link").eq(1).css("font-weight" , "normal");
+    });
+
+    // $("#con2").css("display", "none");
+    // $("#con3").css("display", "none");
+    // // $("#con4").css("display", "none");
+    //
+    // $(".nav-link").eq(0).css("color" , "#7852A9");
+    // $(".nav-link").eq(0).css("font-weight" , "bold");
+    //
+    // $("#homeSec").on('click' , ()=>{
+    //     $("#con2").css("display", "none");
+    //     // $("#con3").css("display", "none");
+    //     // $("#con4").css("display", "none");
+    //     $("#con2").css("display", "block");
+    //
+    //     $(".nav-link").eq(0).css("color" , "#7852A9");
+    //     $(".nav-link").eq(0).css("font-weight" , "bold");
+    //
+    //     $(".nav-link").eq(1).css("color" , "white");
+    //     $(".nav-link").eq(1).css("font-weight" , "normal");
+    //
+    //     // $(".nav-link").eq(2).css("color" , "white");
+    //     // $(".nav-link").eq(2).css("font-weight" , "normal");
+    //     //
+    //     // $(".nav-link").eq(3).css("color" , "white");
+    //     // $(".nav-link").eq(3).css("font-weight" , "normal");
+    // });
+
+
+
+    $("#homeSec").on('click' , ()=>{
+        $("#con1").css("display", "none");
+        $("#con2").css("display", "block");
+        $("#con3").css("display", "none");
+        $("#con4").css("display", "none");
+        $("#con5").css("display", "none");
+        $("#con6").css("display", "none");
+        $("#con7").css("display", "none");
+        $("#con8").css("display", "none");
+
+        $(".nav-link").eq(0).css("color" , "#7852A9");
+        $(".nav-link").eq(0).css("font-weight" , "bold");
+
+        $(".nav-link").eq(1).css("color" , "white");
+        $(".nav-link").eq(1).css("font-weight" , "normal");
+
+        $(".nav-link").eq(2).css("color" , "white");
+        $(".nav-link").eq(2).css("font-weight" , "normal");
+
+        $(".nav-link").eq(3).css("color" , "white");
+        $(".nav-link").eq(3).css("font-weight" , "normal");
+
+        $(".nav-link").eq(4).css("color" , "white");
+        $(".nav-link").eq(4).css("font-weight" , "normal");
+
+        $(".nav-link").eq(5).css("color" , "white");
+        $(".nav-link").eq(5).css("font-weight" , "normal");
+
+        $(".nav-link").eq(6).css("color" , "white");
+        $(".nav-link").eq(6).css("font-weight" , "normal");
+
+        // $(".nav-link").eq(7).css("color" , "white");
+        // $(".nav-link").eq(7).css("font-weight" , "normal");
+    });
+
+    $("#saleSec").on('click' , ()=>{
+        loadSalesData();
+        loadItemCode();
+        generateOrderNo();
+        $("#con1").css("display", "none");
+        $("#con2").css("display", "none");
+        $("#con3").css("top", "0");
+        $("#con3").css("display", "block");
+        $("#con4").css("display", "none");
+        $("#con5").css("display", "none");
+        $("#con6").css("display", "none");
+        $("#con7").css("display", "none");
+        $("#con8").css("display", "none");
+
+        $(".nav-link").eq(0).css("color" , "white");
+        $(".nav-link").eq(0).css("font-weight" , "normal");
+
+        $(".nav-link").eq(1).css("color" , "#7852A9");
+        $(".nav-link").eq(1).css("font-weight" , "bold");
+
+        $(".nav-link").eq(2).css("color" , "white");
+        $(".nav-link").eq(2).css("font-weight" , "normal");
+
+        $(".nav-link").eq(3).css("color" , "white");
+        $(".nav-link").eq(3).css("font-weight" , "normal");
+
+        $(".nav-link").eq(4).css("color" , "white");
+        $(".nav-link").eq(4).css("font-weight" , "normal");
+
+        $(".nav-link").eq(5).css("color" , "white");
+        $(".nav-link").eq(5).css("font-weight" , "normal");
+
+        $(".nav-link").eq(6).css("color" , "white");
+        $(".nav-link").eq(6).css("font-weight" , "normal");
+    });
+
+    $("#supSec").on('click' , ()=>{
+        loadSupplierData();
+        generateSupCode();
+        $("#con1").css("display", "none");
+        $("#con2").css("display", "none");
+        $("#con4").css("top", "0");
+        $("#con4").css("display", "block");
+        $("#con5").css("display", "none");
+        $("#con3").css("display", "none");
+        $("#con6").css("display", "none");
+        $("#con7").css("display", "none");
+        $("#con8").css("display", "none");
+
+        $(".nav-link").eq(0).css("color" , "white");
+        $(".nav-link").eq(0).css("font-weight" , "normal");
+
+        $(".nav-link").eq(2).css("color" , "#7852A9");
+        $(".nav-link").eq(2).css("font-weight" , "bold");
+
+        $(".nav-link").eq(1).css("color" , "white");
+        $(".nav-link").eq(1).css("font-weight" , "normal");
+
+        $(".nav-link").eq(3).css("color" , "white");
+        $(".nav-link").eq(3).css("font-weight" , "normal");
+
+        $(".nav-link").eq(4).css("color" , "white");
+        $(".nav-link").eq(4).css("font-weight" , "normal");
+
+        $(".nav-link").eq(5).css("color" , "white");
+        $(".nav-link").eq(5).css("font-weight" , "normal");
+
+        $(".nav-link").eq(6).css("color" , "white");
+        $(".nav-link").eq(6).css("font-weight" , "normal");
+    });
+
+    $("#cusSec").on('click' , ()=>{
+        loadCustomerData();
+        generateCusCode();
+        $("#con1").css("display", "none");
+        $("#con2").css("display", "none");
+        $("#con5").css("top", "0");
+        $("#con5").css("display", "block");
+        $("#con3").css("display", "none");
+        $("#con4").css("display", "none");
+        $("#con6").css("display", "none");
+        $("#con7").css("display", "none");
+        $("#con8").css("display", "none");
+
+        $(".nav-link").eq(0).css("color" , "white");
+        $(".nav-link").eq(0).css("font-weight" , "normal");
+
+        $(".nav-link").eq(3).css("color" , "#7852A9");
+        $(".nav-link").eq(3).css("font-weight" , "bold");
+
+        $(".nav-link").eq(1).css("color" , "white");
+        $(".nav-link").eq(1).css("font-weight" , "normal");
+
+        $(".nav-link").eq(5).css("color" , "white");
+        $(".nav-link").eq(5).css("font-weight" , "normal");
+
+        $(".nav-link").eq(4).css("color" , "white");
+        $(".nav-link").eq(4).css("font-weight" , "normal");
+
+        $(".nav-link").eq(2).css("color" , "white");
+        $(".nav-link").eq(2).css("font-weight" , "normal");
+
+        $(".nav-link").eq(6).css("color" , "white");
+        $(".nav-link").eq(6).css("font-weight" , "normal");
+    });
+
+    $("#invSec").on('click' , ()=>{
+        loadInventoryData();
+        $("#con1").css("display", "none");
+        $("#con2").css("display", "none");
+        $("#con7").css("top", "0");
+        $("#con7").css("display", "block");
+        $("#con3").css("display", "none");
+        $("#con4").css("display", "none");
+        $("#con5").css("display", "none");
+        $("#con6").css("display", "none");
+        $("#con8").css("display", "none");
+
+        $(".nav-link").eq(0).css("color" , "white");
+        $(".nav-link").eq(0).css("font-weight" , "normal");
+
+        $(".nav-link").eq(5).css("color" , "#7852A9");
+        $(".nav-link").eq(5).css("font-weight" , "bold");
+
+        $(".nav-link").eq(1).css("color" , "white");
+        $(".nav-link").eq(1).css("font-weight" , "normal");
+
+        $(".nav-link").eq(3).css("color" , "white");
+        $(".nav-link").eq(3).css("font-weight" , "normal");
+
+        $(".nav-link").eq(4).css("color" , "white");
+        $(".nav-link").eq(4).css("font-weight" , "normal");
+
+        $(".nav-link").eq(2).css("color" , "white");
+        $(".nav-link").eq(2).css("font-weight" , "normal");
+
+        $(".nav-link").eq(6).css("color" , "white");
+        $(".nav-link").eq(6).css("font-weight" , "normal");
+    });
+
+    $("#empSec").on('click' , ()=>{
+        loadEmployeeData();
+        generateEmpCode();
+        $("#con1").css("display", "none");
+        $("#con2").css("display", "none");
+        $("#con3").css("display", "none");
+        $("#con4").css("display", "none");
+        $("#con5").css("display", "none");
+        $("#con6").css("top", "0");
+        $("#con6").css("display", "block");
+        $("#con7").css("display", "none");
+        $("#con8").css("display", "none");
+
+        $(".nav-link").eq(0).css("color" , "white");
+        $(".nav-link").eq(0).css("font-weight" , "normal");
+
+        $(".nav-link").eq(4).css("color" , "#7852A9");
+        $(".nav-link").eq(4).css("font-weight" , "bold");
+
+        $(".nav-link").eq(1).css("color" , "white");
+        $(".nav-link").eq(1).css("font-weight" , "normal");
+
+        $(".nav-link").eq(3).css("color" , "white");
+        $(".nav-link").eq(3).css("font-weight" , "normal");
+
+        $(".nav-link").eq(5).css("color" , "white");
+        $(".nav-link").eq(5).css("font-weight" , "normal");
+
+        $(".nav-link").eq(2).css("color" , "white");
+        $(".nav-link").eq(2).css("font-weight" , "normal");
+
+        $(".nav-link").eq(6).css("color" , "white");
+        $(".nav-link").eq(6).css("font-weight" , "normal");
+    });
+
+
+    $("#admSec").on('click' , ()=>{
+        // loadTotSales();
+        $("#con1").css("display", "none");
+        $("#con2").css("display", "none");
+        $("#con3").css("display", "none");
+        $("#con4").css("display", "none");
+        $("#con5").css("display", "none");
+        $("#con6").css("display", "none");
+        $("#con7").css("display", "none");
+        $("#con8").css("top", "0");
+        $("#con8").css("display", "block");
+
+        $(".nav-link").eq(0).css("color" , "white");
+        $(".nav-link").eq(0).css("font-weight" , "normal");
+
+        $(".nav-link").eq(6).css("color" , "#7852A9");
+        $(".nav-link").eq(6).css("font-weight" , "bold");
+
+        $(".nav-link").eq(1).css("color" , "white");
+        $(".nav-link").eq(1).css("font-weight" , "normal");
+
+        $(".nav-link").eq(3).css("color" , "white");
+        $(".nav-link").eq(3).css("font-weight" , "normal");
+
+        $(".nav-link").eq(5).css("color" , "white");
+        $(".nav-link").eq(5).css("font-weight" , "normal");
+
+        $(".nav-link").eq(2).css("color" , "white");
+        $(".nav-link").eq(2).css("font-weight" , "normal");
+
+        $(".nav-link").eq(7).css("color" , "white");
+        $(".nav-link").eq(7).css("font-weight" , "normal");
+
+        $(".nav-link").eq(4).css("color" , "white");
+        $(".nav-link").eq(4).css("font-weight" , "normal");
+    });
+
+    // const h3 = document.querySelector("h3"); // Select the h1 element
+    // const today = new Date().toLocaleDateString(); // Get today's date
+    // h3.textContent = `Date: ${today}`; // Update the h1 content
+
+
+
+    // $("#salesBtn>#btnRow3>#btnUpdate").click(function () {
+    //
+    //     Swal.fire({
+    //         title: "Verify if you're an Admin",
+    //         input: "text",
+    //         inputAttributes: {
+    //             autocapitalize: "off"
+    //         },
+    //         confirmButtonText: "Update",
+    //         showCancelButton: true,
+    //         showLoaderOnConfirm: true,
+    //         preConfirm: async (login) => {
+    //             try {
+    //                 const emailUpdate = `
+    //     https://api.github.com/users/${login}
+    //   `;
+    //                 const response = await fetch(emailUpdate);
+    //                 if (!response.ok) {
+    //                     return Swal.showValidationMessage(`
+    //       ${JSON.stringify(await response.json())}
+    //     `);
+    //                 }
+    //                 return response.json();
+    //             } catch (error) {
+    //                 Swal.showValidationMessage(`
+    //     Request failed: ${error}
+    //   `);
+    //             }
+    //         },
+    //         allowOutsideClick: () => !Swal.isLoading()
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             Swal.fire({
+    //                 title: `${result.value.login}'s avatar`,
+    //                 imageUrl: result.value.avatar_url
+    //             });
+    //         }
+    //     });
+    //
+    //
+    //     // (async () => {
+    //     //     const {value: formValues} = await Swal.fire({
+    //     //         title: 'Verify',
+    //     //         html:
+    //     //             '<input class="swal2-input" id="emailUpdate" placeholder="Email">' +
+    //     //             '<input class="swal2-input" id="pwUpdate" placeholder="Password">' ,
+    //     //             showCancelButton:true
+    //     //     })()
+    //     // })
+    //
+    //     // Swal.fire("SweetAlert2 is working!");
+    // });
+
+</script>
+
+</body>
+</html>
