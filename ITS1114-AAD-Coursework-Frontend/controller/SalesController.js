@@ -59,10 +59,11 @@ $("#btnSave").on('click' , ()=>{
 
                 $("#tot").val(tot_price);
 
-                let amount = $("#amount").val();
+
 
                 $("#amount").on("change keyup", function() {
-                    let bal = amount-100;
+                    let amount = $("#amount").val();
+                    let bal = amount-tot_price;
                     $("#bal").val(bal);
                 });
 
