@@ -50,34 +50,64 @@ $("#btnSave").on('click' , ()=>{
 
             if (pay_method === "Cash") {
 
-                Swal.fire({
-                    title: "Payment",
-                    position: 'top',
-                    html: `
-               <h4>Total : </h4><h4 id="tot"></h4>                 
-               <input id="swal-input1" class="swal2-input" type="number" placeholder="paid amount">
-               <h4>Balance : </h4><h4 id="bal"></h4>
-               `,
-                    preConfirm: async () => {
+                const salesBalDiv = document.getElementById("salesBal");
+                salesBalDiv.removeAttribute("hidden");
 
-                        const tot = $("#totPrice").val();
-                        console.log("totPrice here : "+total);
+                // const tot = $("#totPrice");
 
-                        const totElement = document.getElementById("tot");
-                        totElement.textContent = "Total: " + total;
+                console.log("total is here: "+tot_price);
 
+                $("#tot").val(tot_price);
 
-                        const amount = document.getElementById('swal-input1').value;
+                let amount = $("#amount").val();
 
-                        // Calculate and display balance
-                        let balance = tot - amount;
-                        const balanceElement = document.getElementById("bal");
-                        balanceElement.textContent = "Balance: " + balance;
+                $("#amount").on("change keyup", function() {
+                    let bal = amount-100;
+                    $("#bal").val(bal);
+                });
 
-                        // Your login validation logic goes here
-                        // ... (rest of your code)
-                    },
-                    // ... (rest of Swal.fire configuration)
+                $("#btnCancel").on("click", () => {
+                    const salesBalDiv = document.getElementById("salesBal");
+                    salesBalDiv.setAttribute("hidden", ""); // Set the hidden attribute
+
+                    $("#tot").val("");
+                    $("#amount").val("");
+                    $("#bal").val("");
+                });
+
+                $("#btnDone").on("click", () => {
+                    let salesJSON = JSON.stringify(salesObject);
+                    console.log('salesJSON: ', salesJSON);
+                    // AJAX - JQuery
+                    $.ajax({
+                        url: `${servletUrlSaveSales}`,
+                        type: "POST",
+                        data: salesJSON,
+                        headers: {
+                            "Content-Type": "application/json",
+                            "authorization": "Bearer " + localStorage.getItem("AuthToken")
+                        },
+                        success: (res) => {
+                            console.log(JSON.stringify(res));
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Saved'
+                            })
+                            // Swal.fire({
+                            //     width: '225px',
+                            //     position: 'top',
+                            //     icon: 'success',
+                            //     title: 'Saved!',
+                            //     showConfirmButton: false,
+                            //     timer: 2000
+                            // });
+                            // $("#customer_btns>button[type='button']").eq(3).click();
+                            $("#btnReset").click();
+                        },
+                        error: (err) => {
+                            console.error(err);
+                        }
+                    });
                 });
 
             } else {
@@ -236,8 +266,36 @@ $("#btnSave").on('click' , ()=>{
 // });
 
 
-
-
+//
+// Swal.fire({
+//     title: "Payment",
+//     position: 'top',
+//     html: `
+//                <h4>Total : </h4><h4 id="tot"></h4>
+//                <input id="swal-input1" class="swal2-input" type="number" placeholder="paid amount">
+//                <h4>Balance : </h4><h4 id="bal"></h4>
+//                `,
+//     preConfirm: async () => {
+//
+//         const tot = $("#totPrice").val();
+//         console.log("totPrice here : "+total);
+//
+//         const totElement = document.getElementById("tot");
+//         totElement.textContent = "Total: " + total;
+//
+//
+//         const amount = document.getElementById('swal-input1').value;
+//
+//         // Calculate and display balance
+//         let balance = tot - amount;
+//         const balanceElement = document.getElementById("bal");
+//         balanceElement.textContent = "Balance: " + balance;
+//
+//         // Your login validation logic goes here
+//         // ... (rest of your code)
+//     },
+//     // ... (rest of Swal.fire configuration)
+// });
 
 
 

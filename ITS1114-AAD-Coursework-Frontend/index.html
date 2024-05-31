@@ -211,25 +211,29 @@
         </table>
 
 
-        <div id="salesBal">
-            <h2 style="text-align: center">Payment</h2><br>
+        <div id="salesBal" hidden>
+            <br><h2 style="text-align: center">Payment</h2><br>
 
-            <div class="form-floating mb-3" style="text-align: center">
+            <div id="alignDiv">
+
+            <div class="form-floating mb-3">
                 <input type="number" class="form-control" id="tot" placeholder="Total" autocomplete="off">
                 <label for="amount">Total</label>
             </div>
 
-            <div class="form-floating mb-3" style="text-align: center">
+            <div class="form-floating mb-3">
                 <input type="number" class="form-control" id="amount" placeholder="Paid Amount" autocomplete="off">
                 <label for="amount">Paid Amount</label>
             </div>
-            <div class="form-floating mb-3" style="text-align: center">
+            <div class="form-floating mb-3">
                 <input type="number" class="form-control" id="bal" placeholder="Balance" autocomplete="off">
                 <label for="amount">Balance</label>
             </div>
 
+            <div id="alignBtn">
              <button type="button" class="btn btn-outline-secondary btn-sm" id="btnDone">Done</button>
              <button type="button" class="btn btn-outline-secondary btn-sm" id="btnCancel">Cancel</button>
+            </div>
 
         </div>
 

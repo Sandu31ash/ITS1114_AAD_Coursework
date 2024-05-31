@@ -801,6 +801,29 @@ div>.form-control{
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
+#alignDiv{
+    position: relative;
+    left: 7vw;
+}
+
+#alignBtn{
+    position: relative;
+    left: 5vw;
+}
+
+#alignBtn>button{
+    width: 5vw;
+    color: #391F5E;
+}
+
+#alignBtn>#btnDone:hover {
+    color: white;
+    background-color: #674990;
+}
+#salesBal>h2{
+    color: white;
+}
+
 /*#saleSec:hover{*/
 /*    color: #7852A9;*/
 /*}*/
