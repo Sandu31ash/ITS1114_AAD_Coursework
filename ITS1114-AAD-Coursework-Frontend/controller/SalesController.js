@@ -104,6 +104,7 @@ $("#btnSave").on('click' , ()=>{
                             // });
                             // $("#customer_btns>button[type='button']").eq(3).click();
                             $("#btnReset").click();
+                            $("#btnCancel").click();
                         },
                         error: (err) => {
                             console.error(err);
