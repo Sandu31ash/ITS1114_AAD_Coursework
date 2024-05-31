@@ -69,11 +69,11 @@
 
     <form class="contact-form row" id="loginForm">
         <div class="form-floating mb-5">
-            <input type="text" class="form-control" id="email" placeholder="Email" autocomplete="off">
+            <input type="text" class="form-control" id="email" placeholder="Email" autocomplete="off" value="ash@gmail.com">
             <label for="email">Email</label>
         </div>
         <div class="form-floating mb-5">
-            <input type="password" class="form-control" id="pw" placeholder="Password" autocomplete="off">
+            <input type="password" class="form-control" id="pw" placeholder="Password" autocomplete="off" value="1234">
             <label for="pw">Password</label>
         </div>
 <!--        <button type="button" class="btn btn-outline-light btn-sm">Login</button>-->
@@ -341,7 +341,7 @@
         <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="cusCol1">
             <form action="" method="post" target="_blank" id="customerForm">
                 <div class="form-floating mb-3">
-                    <input class="form-control" type="text" id="cusCode" readonly>
+                    <input class="form-control" type="text" id="cusCode">
                     <label for="cusCode">Customer Code</label>
                 </div>
                 <div class="form-floating mb-3">
@@ -836,7 +836,7 @@
         </div>
         <div class="col col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" id="adminCol3">
             <div id="frame6">
-            <img src="/assets/images/mens_formal_shoe.jpg" class="img-fluid" alt="" id="mostSalePic">
+<!--            <img src="/assets/images/mens_formal_shoe.jpg" class="img-fluid" alt="" id="mostSalePic">-->
             </div>
         </div>
     </div>
@@ -859,6 +859,7 @@
 <script src="./controller/SalesController.js"></script>
 <script src="./controller/InventoryController.js"></script>
 <script src="./controller/AdminPanelController.js"></script>
+<script src="./controller/LoginController.js"></script>
 
 <!--//////////////////Manage Navigations////////////////////-->
 
@@ -878,23 +879,23 @@
     $(".nav-link").eq(0).css("font-weight" , "bold");
 
 
-    $("#btnLogin").on('click' , ()=>{
-        $("#con1").css("display", "none");
-        $("#con2").css("display", "block");
-        $("#header1").css("display", "block");
-        $("#con3").css("display", "none");
-        $("#con4").css("display", "none");
-        $("#con5").css("display", "none");
-        $("#con6").css("display", "none");
-        $("#con7").css("display", "none");
-        $("#con8").css("display", "none");
-
-        $(".nav-link").eq(0).css("color" , "#7852A9");
-        $(".nav-link").eq(0).css("font-weight" , "bold");
-
-        $(".nav-link").eq(1).css("color" , "white");
-        $(".nav-link").eq(1).css("font-weight" , "normal");
-    });
+    // $("#btnLogin").on('click' , ()=>{
+    //     $("#con1").css("display", "none");
+    //     $("#con2").css("display", "block");
+    //     $("#header1").css("display", "block");
+    //     $("#con3").css("display", "none");
+    //     $("#con4").css("display", "none");
+    //     $("#con5").css("display", "none");
+    //     $("#con6").css("display", "none");
+    //     $("#con7").css("display", "none");
+    //     $("#con8").css("display", "none");
+    //
+    //     $(".nav-link").eq(0).css("color" , "#7852A9");
+    //     $(".nav-link").eq(0).css("font-weight" , "bold");
+    //
+    //     $(".nav-link").eq(1).css("color" , "white");
+    //     $(".nav-link").eq(1).css("font-weight" , "normal");
+    // });
 
     // $("#con2").css("display", "none");
     // $("#con3").css("display", "none");
@@ -1170,6 +1171,60 @@
 
         $(".nav-link").eq(4).css("color" , "white");
         $(".nav-link").eq(4).css("font-weight" , "normal");
+    });
+
+    $("#logout").on('click' , ()=>{
+
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure you wanna logout?",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Logout",
+            background: "#A68CBC",
+            confirmButtonColor: "#553C81",
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                $("#header1").css("display", "none");
+                $("#con8").css("display", "none");
+                $("#con2").css("display", "none");
+                $("#con3").css("display", "none");
+                $("#con4").css("display", "none");
+                $("#con5").css("display", "none");
+                $("#con6").css("display", "none");
+                $("#con7").css("display", "none");
+                $("#con1").css("top", "0");
+                $("#con1").css("display", "block");
+
+                $(".nav-link").eq(6).css("color" , "white");
+                $(".nav-link").eq(6).css("font-weight" , "normal");
+
+                $(".nav-link").eq(0).css("color" , "#7852A9");
+                $(".nav-link").eq(0).css("font-weight" , "bold");
+
+                $(".nav-link").eq(1).css("color" , "white");
+                $(".nav-link").eq(1).css("font-weight" , "normal");
+
+                $(".nav-link").eq(3).css("color" , "white");
+                $(".nav-link").eq(3).css("font-weight" , "normal");
+
+                $(".nav-link").eq(5).css("color" , "white");
+                $(".nav-link").eq(5).css("font-weight" , "normal");
+
+                $(".nav-link").eq(2).css("color" , "white");
+                $(".nav-link").eq(2).css("font-weight" , "normal");
+
+                $(".nav-link").eq(7).css("color" , "white");
+                $(".nav-link").eq(7).css("font-weight" , "normal");
+
+                $(".nav-link").eq(4).css("color" , "white");
+                $(".nav-link").eq(4).css("font-weight" , "normal");
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+            }
+        });
+
+
     });
 
     // const h3 = document.querySelector("h3"); // Select the h1 element

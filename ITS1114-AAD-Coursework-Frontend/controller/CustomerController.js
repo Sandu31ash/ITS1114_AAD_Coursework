@@ -5,6 +5,9 @@ const servletUrlDelete = 'http://localhost:8080/its1114aadcoursework1/api/v1/cus
 
 let row_index = null;
 
+const sriLankanMobileNumberRegex = /^(\+94|0)[1-9][0-9]{8}$/;
+const regMobile = new RegExp(sriLankanMobileNumberRegex);
+
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-right',
@@ -89,36 +92,67 @@ $("#cusBtnSave").on('click' , ()=>{
 
        console.log('gender: ', gender);
 
-       // Convert the JS object to a JSON
-       let customerJSON = JSON.stringify(customerObject);
-       console.log('customerJSON: ', customerJSON);
-       // AJAX - JQuery
-       $.ajax({
-        url: `${servletUrlSave}`,
-        type: "POST",
-        data: customerJSON,
-        headers: {"Content-Type": "application/json"},
-        success: (res) => {
-         console.log(JSON.stringify(res));
-         // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Saved!', showConfirmButton: false, timer: 2000});
+       if(cus_code && cus_name && gender && j_Date && level && tot_points && dob && cus_add1 && cus_add2 && cus_add3 && cus_add4 && cus_add5 && cus_contact && cus_email && rec_pur_data) {
 
-            // import Swal from 'sweetalert2'
-            // import './styles.css'
+           var emailValid = regEmail.test(cus_email);
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Saved'
-            })
+           if(emailValid) {
 
-         $("#cusBtn>button[type='button']").eq(0).click();
-         // loadCustomerData();
-         //    generateCusCode();
-            $("#cusBtnReset").click();
-        },
-        error: (err) => { console.error(err);}
-       });
+               var contactValid = regMobile.test(cus_contact);
 
+               if(contactValid) {
 
+                   // Convert the JS object to a JSON
+                   let customerJSON = JSON.stringify(customerObject);
+                   console.log('customerJSON: ', customerJSON);
+                   // AJAX - JQuery
+                   $.ajax({
+                       url: `${servletUrlSave}`,
+                       type: "POST",
+                       data: customerJSON,
+                       headers: {
+                           "Content-Type": "application/json",
+                           "authorization": "Bearer " + localStorage.getItem("AuthToken")
+                       },
+                       success: (res) => {
+                           console.log(JSON.stringify(res));
+                           // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Saved!', showConfirmButton: false, timer: 2000});
+
+                           // import Swal from 'sweetalert2'
+                           // import './styles.css'
+
+                           Toast.fire({
+                               icon: 'success',
+                               title: 'Saved'
+                           })
+
+                           $("#cusBtn>button[type='button']").eq(0).click();
+                           // loadCustomerData();
+                           //    generateCusCode();
+                           $("#cusBtnReset").click();
+                       },
+                       error: (err) => {
+                           console.error(err);
+                       }
+                   });
+               }else {
+                   Toast.fire({
+                       icon: 'error',
+                       title: 'Enter valid contact! +947********  or  07********'
+                   })
+               }
+            }else {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Enter valid email!'
+                })
+            }
+       }else{
+           Toast.fire({
+               icon: 'error',
+               title: 'Fill all the fields!'
+           })
+       }
 });
 
 
@@ -173,31 +207,43 @@ $("#cusBtnUpdate").on('click' , ()=>{
 
     console.log('customerObject: ', customerObject);
 
-    let customerJSON = JSON.stringify(customerObject);
-    console.log('customerJSON: ', customerJSON);
-    $.ajax({
-        url: `${servletUrlUpdate}`,
-        type: "PUT",
-        data: customerJSON,
-        headers: {
-            "cusCode": cus_code,
-            "Content-Type": "application/json"
-        },
-        success: (res) => {
-            console.log(JSON.stringify(res));
-            // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Updated!', showConfirmButton: false, timer: 2000});
+    if(cus_code && cus_name && gender && j_Date && level && tot_points && dob && cus_add1 && cus_add2 && cus_add3 && cus_add4 && cus_add5 && cus_contact && cus_email && rec_pur_data) {
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Updated'
-            })
 
-            // $("#cusBtn>button[type='button']").eq(0).click();
-            // loadCustomerData();
-            $("#cusBtnReset").click();
-        },
-        error: (err) => { console.error(err);}
-    });
+        let customerJSON = JSON.stringify(customerObject);
+        console.log('customerJSON: ', customerJSON);
+        $.ajax({
+            url: `${servletUrlUpdate}`,
+            type: "PUT",
+            data: customerJSON,
+            headers: {
+                "cusCode": cus_code,
+                "Content-Type": "application/json",
+                "authorization": "Bearer " + localStorage.getItem("AuthToken")
+            },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Updated!', showConfirmButton: false, timer: 2000});
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Updated'
+                })
+
+                // $("#cusBtn>button[type='button']").eq(0).click();
+                // loadCustomerData();
+                $("#cusBtnReset").click();
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
+    }else{
+        Toast.fire({
+            icon: 'error',
+            title: 'Fill all the fields!'
+        })
+    }
 });
 
 // delete customer
@@ -205,10 +251,11 @@ $("#cusBtnDelete").on('click' , ()=>{
     let cus_code = $("#cusCode").val();
     console.log("delete : "+cus_code);
                 Swal.fire({
-                    width: '300px', title: 'Delete Customer',
+                    width: '500px', title: 'Delete Customer',
+                    // height: '200px',
                     position: 'top',
-                    text: "Are you sure you want to permanently remove this customer?",
-                    icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6',
+                    text: "Are you sure you wanna permanently remove this customer?",
+                    icon: 'warning', showCancelButton: true, confirmButtonColor: '#6D49A7',
                     cancelButtonColor: '#d33', confirmButtonText: 'Yes, delete!'
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -222,7 +269,8 @@ $("#cusBtnDelete").on('click' , ()=>{
                             data: customerJSON,
                             headers: {
                                 "cusCode": cus_code,
-                                "Content-Type": "application/json"
+                                "Content-Type": "application/json",
+                                "authorization": "Bearer "+localStorage.getItem("AuthToken")
                             },
                             success: (res) => {
                                 console.log(JSON.stringify(res));
@@ -243,50 +291,50 @@ $("#cusBtnDelete").on('click' , ()=>{
                 });
 });
 
-const generateCusCode = async () => { // Use async for asynchronous operations
+function generateCusCode() {
     $("#cusCode").val(""); // Clear previous value
 
     const urlWithParams = new URL(`${servletUrlGetAll}`); // Update URL for all customers
 
-    try {
-        const response = await fetch(urlWithParams, { method: 'GET' });
+    $.ajax({
+        url: urlWithParams.href, // Use URL object's href property
+        type: 'GET',
+        dataType: 'json', // Expect JSON response
+        headers: {"Content-Type": "application/json", "authorization": "Bearer "+localStorage.getItem("AuthToken")},
+        success: function(data) {
+            if (Array.isArray(data)) {
+                console.log('Response customer data: ', data);
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+                // Find the last customer code (assuming cusCode is unique)
+                const lastCustomer = data.length > 0 ? data[data.length - 1] : null;
+                let lastCusCode = null;
 
-        const data = await response.json();
+                if (lastCustomer) {
+                    lastCusCode = lastCustomer.cusCode; // Assuming cusCode is a property within the customer object
+                }
 
-        if (Array.isArray(data)) {
-            console.log('Response customer data: ', data);
+                if (lastCusCode === "") {
+                    $("#cusCode").val("HSC00001");
+                } else {
+                    const prefix = "HSC";
+                    const defaultCode = "HSC00001";
 
-            // Find the last customer code (assuming cusCode is unique)
-            const lastCustomer = data.length > 0 ? data[data.length - 1] : null;
-            let lastCusCode = null;
+                    // Extract the numeric part (assuming format "HSCxxxxx")
+                    const number = lastCusCode ? parseInt(lastCusCode.substr(prefix.length)) + 1 : 1;
 
-            if (lastCustomer) {
-                lastCusCode = lastCustomer.cusCode; // Assuming cusCode is a property within the customer object
+                    // Generate the new code with zero-padding to maintain the format
+                    const newCusCode = prefix + number.toString().padStart(5, "0");
+                    $("#cusCode").val(newCusCode);
+                }
+            } else {
+                console.error('Error: Expected JSON array, but received: ', data);
             }
-
-            if (lastCusCode === "") {
-                $("#cusCode").val("HSC00001");
-            } else {const prefix = "HSC";
-                const defaultCode = "HSC00001";
-
-                // Extract the numeric part (assuming format "HSCxxxxx")
-                const number = lastCusCode ? parseInt(lastCusCode.substr(prefix.length)) + 1 : 1;
-
-                // Generate the new code with zero-padding to maintain the format
-                const newCusCode = prefix + number.toString().padStart(5, "0");
-                $("#cusCode").val(newCusCode);
-            }
-        } else {
-            console.error('Error: Expected JSON array, but received: ', data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
         }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
+    });
+}
 
 
 // const generateCusCode = () => {
@@ -320,18 +368,19 @@ const generateCusCode = async () => { // Use async for asynchronous operations
 // }
 
 
-const loadCustomerData = () => {
-    const urlWithParams = new URL(`${servletUrlGetAll}`)
-    fetch(urlWithParams, { method: 'GET',})
-        .then(response => {
-            if (!response.ok) { throw new Error(`HTTP error! Status: ${response.status}`);}
-            return response.json();
-        })
-        .then(data => {
+function loadCustomerData() {
+    const urlWithParams = new URL(`${servletUrlGetAll}`);
+
+    $.ajax({
+        url: urlWithParams.href, // Use URL object's href property
+        type: 'GET',
+        dataType: 'json', // Expect JSON response
+        headers: {"Content-Type": "application/json", "authorization": "Bearer "+localStorage.getItem("AuthToken")},
+        success: function(data) {
             if (Array.isArray(data)) {
                 console.log('Response customer data: ', data);
                 $('#cus_tBody').empty();
-                data.forEach(customer => {
+                data.forEach(function(customer) {
                     let record = `<tr><td class="cusCode">${customer.cusCode}</td><td class="name">${customer.cusName}</td>
                     <td class="gender">${customer.gender}</td><td class="j_Date">${customer.joinedDate}</td>
                     <td class="level">${customer.level}</td><td class="totalPoints">${customer.totPoints}</td>
@@ -340,10 +389,16 @@ const loadCustomerData = () => {
                     <td class="cus_contact">${customer.contact}</td><td class="cus_email">${customer.email}</td><td class="rec_pur_data">${customer.recPurData}</td></tr>`;
                     $("#cus_tBody").append(record);
                 });
-            } else { console.error('Error: Expected JSON array, but received: ', data); }
-        })
-        .catch(error => { console.error('Error: ', error);});
-};
+            } else {
+                console.error('Error: Expected JSON array, but received: ', data);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error: ', textStatus, errorThrown);
+        }
+    });
+}
+
 
 
 // retrieve customer by table click
@@ -369,6 +424,15 @@ $("#cus_tBody").on("click", "tr", function() {
     $("#cusName").val(name);
     // radio.val(gender);
     document.getElementsByName('gender').values(gender);
+
+    if(gender == "MALE") {
+        const maleRadio = document.getElementById('male');
+        maleRadio.checked = true;
+    }else {
+        const femaleRadio = document.getElementById('female');
+        femaleRadio.checked = true;
+    }
+
     $("#joinedDate").val(j_date);
     $("#level").val(level);
     $("#totPoints").val(totalPoints);
@@ -385,10 +449,11 @@ $("#cus_tBody").on("click", "tr", function() {
 
 
 $("#cusBtnReset").on("click", () => {
-    $("#cusCode").val("");
+    // $("#cusCode").val("");
     $("#cusName").val("");
-    // radio.val(gender);
-    document.getElementsByName('gender').values("");
+    const fieldset = document.getElementById('fieldSet');
+    const checkedRadio = fieldset.querySelector('input[type="radio"]:checked');
+    checkedRadio.checked = false;
     $("#joinedDate").val("");
     $("#level").val("");
     $("#totPoints").val("");

@@ -51,31 +51,50 @@ $("#empBtnSave").on('click',()=>{
 
     console.log('employeeObject: ', employeeObject);
 
-    // Convert the JS object to a JSON
-    let employeeJSON = JSON.stringify(employeeObject);
-    console.log('employeeJSON: ', employeeJSON);
-    // AJAX - JQuery
-    $.ajax({
-        url: `${servletUrlSaveEmp}`,
-        type: "POST",
-        data: employeeJSON,
-        headers: {"Content-Type": "application/json"},
-        success: (res) => {
-            console.log(JSON.stringify(res));
-            Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Saved!', showConfirmButton: false, timer: 2000});
+    if(emp_name && emp_pic && gender && status && desig && acc_role && dob && date_of_join && branch && emp_add1 && emp_add2 && emp_add3 && emp_add4 && emp_add5 && emp_contact && emp_email && in_case_of_emg && emerg_contact) {
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Saved'
-            })
+        // Convert the JS object to a JSON
+        let employeeJSON = JSON.stringify(employeeObject);
+        console.log('employeeJSON: ', employeeJSON);
+        // AJAX - JQuery
+        $.ajax({
+            url: `${servletUrlSaveEmp}`,
+            type: "POST",
+            data: employeeJSON,
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": "Bearer " + localStorage.getItem("AuthToken")
+            },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                Swal.fire({
+                    width: '225px',
+                    position: 'top',
+                    icon: 'success',
+                    title: 'Saved!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
 
-            // $("#customer_btns>button[type='button']").eq(3).click();
-            // loadEmployeeData();
-            $("#empBtnReset").click();
-        },
-        error: (err) => { console.error(err);}
-    });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Saved'
+                })
 
+                // $("#customer_btns>button[type='button']").eq(3).click();
+                // loadEmployeeData();
+                $("#empBtnReset").click();
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
+    }else {
+        Toast.fire({
+            icon: 'error',
+            title: 'Fill all the fields!'
+        })
+    }
 
 });
 
@@ -127,33 +146,42 @@ $("#empBtnUpdate").on('click' , ()=>{
 
     console.log('employeeObject: ', employeeObject);
 
-    let employeeJSON = JSON.stringify(employeeObject);
-    console.log('employeeJSON: ', employeeJSON);
-    $.ajax({
-        url: `${servletUrlUpdateEmp}`,
-        type: "PUT",
-        data: employeeJSON,
-        headers: {
-            "empCode": emp_code,
-            "Content-Type": "application/json"
-        },
-        success: (res) => {
-            console.log(JSON.stringify(res));
-            // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Updated!', showConfirmButton: false, timer: 2000});
+    if(emp_name && emp_pic && gender && status && desig && acc_role && dob && date_of_join && branch && emp_add1 && emp_add2 && emp_add3 && emp_add4 && emp_add5 && emp_contact && emp_email && in_case_of_emg && emerg_contact) {
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Updated'
-            })
+        let employeeJSON = JSON.stringify(employeeObject);
+        console.log('employeeJSON: ', employeeJSON);
+        $.ajax({
+            url: `${servletUrlUpdateEmp}`,
+            type: "PUT",
+            data: employeeJSON,
+            headers: {
+                "empCode": emp_code,
+                "Content-Type": "application/json",
+                "authorization": "Bearer " + localStorage.getItem("AuthToken")
+            },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Updated!', showConfirmButton: false, timer: 2000});
 
-            // $("#empBtn>button[type='button']").eq(0).click();
-            // loadEmployeeData();
-            $("#empBtnReset").click();
-        },
-        error: (err) => { console.error(err);}
-    });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Updated'
+                })
 
-
+                // $("#empBtn>button[type='button']").eq(0).click();
+                // loadEmployeeData();
+                $("#empBtnReset").click();
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
+    }else {
+        Toast.fire({
+            icon: 'error',
+            title: 'Fill all the fields!'
+        })
+    }
 });
 
 
@@ -179,7 +207,8 @@ $("#empBtnDelete").on('click' , ()=>{
                 data: employeeJSON,
                 headers: {
                     "empCode": emp_code,
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "authorization": "Bearer "+localStorage.getItem("AuthToken")
                 },
                 success: (res) => {
                     console.log(JSON.stringify(res));
@@ -200,64 +229,68 @@ $("#empBtnDelete").on('click' , ()=>{
 });
 
 
-const generateEmpCode = async () => { // Use async for asynchronous operations
+function generateEmpCode() {
     $("#empCode").val(""); // Clear previous value
 
     const urlWithParams = new URL(`${servletUrlGetAllEmp}`); // Update URL for all emp
 
-    try {
-        const response = await fetch(urlWithParams, { method: 'GET' });
+    $.ajax({
+        url: urlWithParams.href, // Use URL object's href property
+        type: 'GET',
+        dataType: 'json', // Expect JSON response
+        headers: {"Content-Type": "application/json", "authorization": "Bearer "+localStorage.getItem("AuthToken")},
+        success: function(data) {
+            if (Array.isArray(data)) {
+                console.log('Response employee data: ', data);
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+                // Find the last employee code (assuming empCode is unique)
+                const lastEmployee = data.length > 0 ? data[data.length - 1] : null;
+                let lastEmpCode = null;
 
-        const data = await response.json();
+                if (lastEmployee) {
+                    lastEmpCode = lastEmployee.empCode; // Assuming empCode is a property within the employee object
+                }
 
-        if (Array.isArray(data)) {
-            console.log('Response employee data: ', data);
+                if (lastEmpCode === "") {
+                    $("#empCode").val("HSE00001");
+                } else {
+                    const prefix = "HSE";
+                    const defaultCode = "HSE00001";
 
-            // Find the last employee code (assuming empCode is unique)
-            const lastEmployee = data.length > 0 ? data[data.length - 1] : null;
-            let lastEmpCode = null;
+                    // Extract the numeric part (assuming format "HSExxxxx")
+                    const number = lastEmpCode ? parseInt(lastEmpCode.substr(prefix.length)) + 1 : 1;
 
-            if (lastEmployee) {
-                lastEmpCode = lastEmployee.empCode; // Assuming empCode is a property within the employee object
+                    // Generate the new code with zero-padding to maintain the format
+                    const newEmpCode = prefix + number.toString().padStart(5, "0");
+                    $("#empCode").val(newEmpCode);
+                }
+            } else {
+                console.error('Error: Expected JSON array, but received: ', data);
             }
-
-            if (lastEmpCode === "") {
-                $("#empCode").val("HSE00001");
-            } else {const prefix = "HSE";
-                const defaultCode = "HSE00001";
-
-                // Extract the numeric part (assuming format "HSExxxxx")
-                const number = lastEmpCode ? parseInt(lastEmpCode.substr(prefix.length)) + 1 : 1;
-
-                // Generate the new code with zero-padding to maintain the format
-                const newEmpCode = prefix + number.toString().padStart(5, "0");
-                $("#empCode").val(newEmpCode);
-            }
-        } else {
-            console.error('Error: Expected JSON array, but received: ', data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
         }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
+    });
+}
 
 
-const loadEmployeeData = () => {
-    const urlWithParams = new URL(`${servletUrlGetAllEmp}?empCode=get_all&search_term=get_all`)
-    fetch(urlWithParams, { method: 'GET',})
-        .then(response => {
-            if (!response.ok) { throw new Error(`HTTP error! Status: ${response.status}`);}
-            return response.json();
-        })
-        .then(data => {
+
+function loadEmployeeData() {
+    const urlWithParams = new URL(`${servletUrlGetAllEmp}`);
+    urlWithParams.searchParams.append('empCode', 'get_all'); // Add query parameters
+    urlWithParams.searchParams.append('search_term', 'get_all');
+
+    $.ajax({
+        url: urlWithParams.href, // Use URL object's href property
+        type: 'GET',
+        dataType: 'json', // Expect JSON response
+        headers: {"Content-Type": "application/json", "authorization": "Bearer "+localStorage.getItem("AuthToken")},
+        success: function(data) {
             if (Array.isArray(data)) {
                 console.log('Response employee data: ', data);
                 $('#emp_tBody').empty();
-                data.forEach(employee => {
+                data.forEach(function(employee) {
                     let record = `<tr><td class="empCode">${employee.empCode}</td><td class="name">${employee.empName}</td>
                     <td class="pro_pic">${employee.proPic}</td><td class="gender">${employee.gender}</td>
                     <td class="status">${employee.status}</td><td class="desig">${employee.designation}</td>
@@ -268,10 +301,16 @@ const loadEmployeeData = () => {
                     <td class="emerg_contact">${employee.emergContact}</td></tr>`;
                     $("#emp_tBody").append(record);
                 });
-            } else { console.error('Error: Expected JSON array, but received: ', data); }
-        })
-        .catch(error => { console.error('Error: ', error);});
-};
+            } else {
+                console.error('Error: Expected JSON array, but received: ', data);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
+        }
+    });
+}
+
 
 
 // retrieve employee by table click

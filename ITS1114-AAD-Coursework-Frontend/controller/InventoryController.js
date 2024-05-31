@@ -39,29 +39,49 @@ $("#invBtnSave").on('click' , ()=>{
 
     console.log('inventoryObject: ', inventoryObject);
 
-    // Convert the JS object to a JSON
-    let inventoryJSON = JSON.stringify(inventoryObject);
-    console.log('inventoryJSON: ', inventoryJSON);
-    // AJAX - JQuery
-    $.ajax({
-        url: `${servletUrlSaveInv}`,
-        type: "POST",
-        data: inventoryJSON,
-        headers: {"Content-Type": "application/json"},
-        success: (res) => {
-            console.log(JSON.stringify(res));
-            Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Saved!', showConfirmButton: false, timer: 2000});
+    if(item_code && item_desc && item_pic && category_inv && size && qty && sup_code_inv && sup_name_inv && unit_price_sale && unit_price_buy && exp_profit && profit_margin && status) {
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Saved'
-            })
+        // Convert the JS object to a JSON
+        let inventoryJSON = JSON.stringify(inventoryObject);
+        console.log('inventoryJSON: ', inventoryJSON);
+        // AJAX - JQuery
+        $.ajax({
+            url: `${servletUrlSaveInv}`,
+            type: "POST",
+            data: inventoryJSON,
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": "Bearer " + localStorage.getItem("AuthToken")
+            },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                Swal.fire({
+                    width: '225px',
+                    position: 'top',
+                    icon: 'success',
+                    title: 'Saved!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
 
-            loadInventoryData();
-            $("#invBtnReset").click();
-        },
-        error: (err) => { console.error(err);}
-    });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Saved'
+                })
+
+                loadInventoryData();
+                $("#invBtnReset").click();
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
+    }else {
+        Toast.fire({
+            icon: 'error',
+            title: 'Fill all the fields!'
+        })
+    }
 });
 
 
@@ -102,32 +122,41 @@ $("#invBtnUpdate").on('click' , ()=>{
 
     console.log('inventoryObject: ', inventoryObject);
 
-    let inventoryJSON = JSON.stringify(inventoryObject);
-    console.log('inventoryJSON: ', inventoryJSON);
-    $.ajax({
-        url: `${servletUrlUpdateInv}`,
-        type: "PUT",
-        data: inventoryJSON,
-        headers: {
-            "itemCode": item_code,
-            "Content-Type": "application/json"
-        },
-        success: (res) => {
-            console.log(JSON.stringify(res));
-            // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Updated!', showConfirmButton: false, timer: 2000});
+    if(item_code && item_desc && item_pic && category_inv && size && qty && sup_code_inv && sup_name_inv && unit_price_sale && unit_price_buy && exp_profit && profit_margin && status) {
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Updated'
-            })
+        let inventoryJSON = JSON.stringify(inventoryObject);
+        console.log('inventoryJSON: ', inventoryJSON);
+        $.ajax({
+            url: `${servletUrlUpdateInv}`,
+            type: "PUT",
+            data: inventoryJSON,
+            headers: {
+                "itemCode": item_code,
+                "Content-Type": "application/json",
+                "authorization": "Bearer " + localStorage.getItem("AuthToken")
+            },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Updated!', showConfirmButton: false, timer: 2000});
 
-            loadInventoryData();
-            $("#invBtnReset").click();
-        },
-        error: (err) => { console.error(err);}
-    });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Updated'
+                })
 
-
+                loadInventoryData();
+                $("#invBtnReset").click();
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
+    }else{
+        Toast.fire({
+            icon: 'error',
+            title: 'Fill all the fields!'
+        })
+    }
 });
 
 
@@ -153,7 +182,8 @@ $("#invBtnDelete").on('click' , ()=>{
                 data: invJSON,
                 headers: {
                     "itemCode": item_code,
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "authorization": "Bearer "+localStorage.getItem("AuthToken")
                 },
                 success: (res) => {
                     console.log(JSON.stringify(res));
@@ -174,18 +204,19 @@ $("#invBtnDelete").on('click' , ()=>{
 });
 
 
-const loadInventoryData = () => {
-    const urlWithParams = new URL(`${servletUrlGetAllInv}`)
-    fetch(urlWithParams, { method: 'GET',})
-        .then(response => {
-            if (!response.ok) { throw new Error(`HTTP error! Status: ${response.status}`);}
-            return response.json();
-        })
-        .then(data => {
+function loadInventoryData() {
+    const urlWithParams = new URL(`${servletUrlGetAllInv}`);
+
+    $.ajax({
+        url: urlWithParams.href, // Use URL object's href property
+        type: 'GET',
+        dataType: 'json', // Expect JSON response
+        headers: {"Content-Type": "application/json", "authorization": "Bearer "+localStorage.getItem("AuthToken")},
+        success: function(data) {
             if (Array.isArray(data)) {
                 console.log('Response inventory data: ', data);
                 $('#inv_tBody').empty();
-                data.forEach(inventory => {
+                data.forEach(function(inventory) {
                     let record = `<tr><td class="itemCode">${inventory.itemCode}</td><td class="itemDesc">${inventory.itemDesc}</td>
                     <td class="itemPic">${inventory.itemPic}</td><td class="category">${inventory.category}</td>
                     <td class="size">${inventory.size}</td><td class="qty">${inventory.qty}</td>
@@ -195,10 +226,16 @@ const loadInventoryData = () => {
                     <td class="status">${inventory.status}</td></tr>`;
                     $("#inv_tBody").append(record);
                 });
-            } else { console.error('Error: Expected JSON array, but received: ', data); }
-        })
-        .catch(error => { console.error('Error: ', error);});
-};
+            } else {
+                console.error('Error: Expected JSON array, but received: ', data);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
+        }
+    });
+}
+
 
 // retrieve inventory by table click
 $("#inv_tBody").on("click", "tr", function() {

@@ -771,10 +771,19 @@ div>.form-control{
     margin: auto;
 }
 
+#logout{
+    background-color: #9C82BE;
+    border-radius: 50px;
+}
 
+#logout:hover{
+    color: #59308C;
+    background-color: white;
+}
 
-
-
+/*#saleSec:hover{*/
+/*    color: #7852A9;*/
+/*}*/
 
 
 /*.form-floating{*/

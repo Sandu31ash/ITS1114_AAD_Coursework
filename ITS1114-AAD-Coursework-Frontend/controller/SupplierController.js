@@ -38,30 +38,42 @@ $("#supBtnSave").on('click' , ()=>{
 
     console.log('supplierObject: ', supplierObject);
 
-    // Convert the JS object to a JSON
-    let supplierJSON = JSON.stringify(supplierObject);
-    console.log('supplierJSON: ', supplierJSON);
-    // AJAX - JQuery
-    $.ajax({
-        url: `${servletUrlSaveSup}`,
-        type: "POST",
-        data: supplierJSON,
-        headers: {"Content-Type": "application/json"},
-        success: (res) => {
-            console.log(JSON.stringify(res));
-            // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Saved!', showConfirmButton: false, timer: 2000});
+    if (sup_name && category && sup_add1 && sup_add2 && sup_add3 && sup_add4 && sup_add5 && sup_add6 && sup_contact1 && sup_contact2 && sup_email){
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Saved'
-            })
+        // Convert the JS object to a JSON
+        let supplierJSON = JSON.stringify(supplierObject);
+        console.log('supplierJSON: ', supplierJSON);
+        // AJAX - JQuery
+        $.ajax({
+            url: `${servletUrlSaveSup}`,
+            type: "POST",
+            data: supplierJSON,
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": "Bearer " + localStorage.getItem("AuthToken")
+            },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Saved!', showConfirmButton: false, timer: 2000});
 
-            loadSupplierData();
-            $("#supBtnReset").click();
-        },
-        error: (err) => { console.error(err);}
-    });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Saved'
+                })
 
+                loadSupplierData();
+                $("#supBtnReset").click();
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
+    }else {
+        Toast.fire({
+            icon: 'error',
+            title: 'Fill all the fields!'
+        })
+    }
 
 });
 
@@ -100,24 +112,40 @@ $("#supBtnUpdate").on('click' , ()=>{
 
     console.log('supplierObject: ', supplierObject);
 
-    let supplierJSON = JSON.stringify(supplierObject);
-    console.log('supplierJSON: ', supplierJSON);
-    $.ajax({
-        url: `${servletUrlUpdateSup}`,
-        type: "PUT",
-        data: supplierJSON,
-        headers: {
-            "supCode": sup_code,
-            "Content-Type": "application/json"
-        },
-        success: (res) => {
-            console.log(JSON.stringify(res));
-            Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Updated!', showConfirmButton: false, timer: 2000});
-            loadSupplierData();
-            $("#supBtnReset").click();
-        },
-        error: (err) => { console.error(err);}
-    });
+    if (sup_name && category && sup_add1 && sup_add2 && sup_add3 && sup_add4 && sup_add5 && sup_add6 && sup_contact1 && sup_contact2 && sup_email) {
+
+        let supplierJSON = JSON.stringify(supplierObject);
+        console.log('supplierJSON: ', supplierJSON);
+        $.ajax({
+            url: `${servletUrlUpdateSup}`,
+            type: "PUT",
+            data: supplierJSON,
+            headers: {
+                "supCode": sup_code,
+                "Content-Type": "application/json",
+                "authorization": "Bearer " + localStorage.getItem("AuthToken")
+            },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Updated!', showConfirmButton: false, timer: 2000});
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Updated'
+                })
+                loadSupplierData();
+                $("#supBtnReset").click();
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
+    }else{
+        Toast.fire({
+            icon: 'error',
+            title: 'Fill all the fields!'
+        })
+    }
 });
 
 
@@ -143,11 +171,18 @@ $("#supBtnDelete").on('click' , ()=>{
                 data: supplierJSON,
                 headers: {
                     "supCode": sup_code,
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "authorization": "Bearer " + localStorage.getItem("AuthToken")
                 },
                 success: (res) => {
                     console.log(JSON.stringify(res));
-                    Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Deleted!', showConfirmButton: false, timer: 2000});
+                    // Swal.fire({width: '225px', position: 'top', icon: 'success', title: 'Deleted!', showConfirmButton: false, timer: 2000});
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Deleted!'
+                    })
+
                     loadSupplierData();
                     $("#supBtnReset").click();
                 },
@@ -158,76 +193,98 @@ $("#supBtnDelete").on('click' , ()=>{
 });
 
 
-    const generateSupCode = async () => { // Use async for asynchronous operations
+function generateSupCode() {
     $("#supCode").val(""); // Clear previous value
 
-    const urlWithParams = new URL(`${servletUrlGetAllSup}`); // Update URL for all suppliers
+    const urlWithParams = new URL(`${servletUrlGetAllSup}`);
 
-    try {
-        const response = await fetch(urlWithParams, { method: 'GET' });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (Array.isArray(data)) {
-            console.log('Response supplier data: ', data);
-
-            // Find the last supplier code (assuming supCode is unique)
-            const lastSupplier = data.length > 0 ? data[data.length - 1] : null;
-            let lastSupCode = null;
-
-            if (lastSupplier) {
-                lastSupCode = lastSupplier.supCode; // Assuming SupCode is a property within the supplier object
-            }
-
-            if (lastSupCode === "") {
-                $("#supCode").val("HSS00001");
-            } else {const prefix = "HSS";
-                const defaultCode = "HSS00001";
-
-                // Extract the numeric part (assuming format "HSSxxxxx")
-                const number = lastSupCode ? parseInt(lastSupCode.substr(prefix.length)) + 1 : 1;
-
-                // Generate the new code with zero-padding to maintain the format
-                const newSupCode = prefix + number.toString().padStart(5, "0");
-                $("#supCode").val(newSupCode);
-            }
-        } else {
-            console.error('Error: Expected JSON array, but received: ', data);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
-
-
-const loadSupplierData = () => {
-    const urlWithParams = new URL(`${servletUrlGetAllSup}`)
-    fetch(urlWithParams, { method: 'GET',})
-        .then(response => {
-            if (!response.ok) { throw new Error(`HTTP error! Status: ${response.status}`);}
-            return response.json();
-        })
-        .then(data => {
+    $.ajax({
+        url: urlWithParams.href, // Use URL object's href property
+        type: 'GET',
+        dataType: 'json', // Expect JSON response
+        headers: {
+            "Content-Type": "application/json",
+            "authorization": "Bearer " + localStorage.getItem("AuthToken")
+        },
+        success: function(data) {
             if (Array.isArray(data)) {
                 console.log('Response supplier data: ', data);
-                $('#supp_tBody').empty();
-                data.forEach(supplier => {
-                    let record = `<tr><td class="supCode">${supplier.supCode}</td><td class="supName">${supplier.supName}</td>
-                    <td class="category">${supplier.category}</td><td class="add1">${supplier.add1}</td>
-                    <td class="add2">${supplier.add2}</td><td class="add3">${supplier.add3}</td>
-                    <td class="add4">${supplier.add4}</td><td class="add5">${supplier.add5}</td>
-                    <td class="add6">${supplier.add6}</td><td class="contact1">${supplier.contact1}</td>
-                    <td class="contact2">${supplier.contact2}</td><td class="email">${supplier.email}</td></tr>`;
+
+                // Find the last supplier code (assuming supCode is unique)
+                const lastSupplier = data.length > 0 ? data[data.length - 1] : null;
+                let lastSupCode = null;
+
+                if (lastSupplier) {
+                    lastSupCode = lastSupplier.supCode; // Assuming SupCode is a property within the supplier object
+                }
+
+                if (lastSupCode === "") {
+                    $("#supCode").val("HSS00001");
+                } else {
+                    const prefix = "HSS";
+                    const defaultCode = "HSS00001";
+
+                    // Extract the numeric part (assuming format "HSSxxxxx")
+                    const number = lastSupCode ? parseInt(lastSupCode.substr(prefix.length)) + 1 : 1;
+
+                    // Generate the new code with zero-padding to maintain the format
+                    const newSupCode = prefix + number.toString().padStart(5, "0");
+                    $("#supCode").val(newSupCode);
+                }
+            } else {
+                console.error('Error: Expected JSON array, but received: ', data);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
+        }
+    });
+}
+
+
+function loadSupplierData() {
+    const urlWithParams = new URL(`${servletUrlGetAllSup}`);
+
+    $.ajax({
+        url: urlWithParams.href, // Use URL object's href property
+        type: 'GET',
+        dataType: 'json', // Expect JSON response
+        headers: {
+            "Content-Type": "application/json",
+            "authorization": "Bearer " + localStorage.getItem("AuthToken")
+        },
+        success: function(data) {
+            if (Array.isArray(data)) {
+                console.log('Response supplier data: ', data);
+                $('#supp_tBody').empty(); // Clear existing table body
+
+                data.forEach(function(supplier) {
+                    let record = `<tr>
+            <td class="supCode">${supplier.supCode}</td>
+            <td class="supName">${supplier.supName}</td>
+            <td class="category">${supplier.category}</td>
+            <td class="add1">${supplier.add1}</td>
+            <td class="add2">${supplier.add2}</td>
+            <td class="add3">${supplier.add3}</td>
+            <td class="add4">${supplier.add4}</td>
+            <td class="add5">${supplier.add5}</td>
+            <td class="add6">${supplier.add6}</td>
+            <td class="contact1">${supplier.contact1}</td>
+            <td class="contact2">${supplier.contact2}</td>
+            <td class="email">${supplier.email}</td>
+          </tr>`;
                     $("#supp_tBody").append(record);
                 });
-            } else { console.error('Error: Expected JSON array, but received: ', data); }
-        })
-        .catch(error => { console.error('Error: ', error);});
-};
+            } else {
+                console.error('Error: Expected JSON array, but received: ', data);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
+        }
+    });
+}
+
 
 
 // retrieve customer by table click
