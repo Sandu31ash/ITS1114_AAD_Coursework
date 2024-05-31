@@ -210,6 +210,29 @@
             </tbody>
         </table>
 
+
+        <div id="salesBal">
+            <h2 style="text-align: center">Payment</h2><br>
+
+            <div class="form-floating mb-3" style="text-align: center">
+                <input type="number" class="form-control" id="tot" placeholder="Total" autocomplete="off">
+                <label for="amount">Total</label>
+            </div>
+
+            <div class="form-floating mb-3" style="text-align: center">
+                <input type="number" class="form-control" id="amount" placeholder="Paid Amount" autocomplete="off">
+                <label for="amount">Paid Amount</label>
+            </div>
+            <div class="form-floating mb-3" style="text-align: center">
+                <input type="number" class="form-control" id="bal" placeholder="Balance" autocomplete="off">
+                <label for="amount">Balance</label>
+            </div>
+
+             <button type="button" class="btn btn-outline-secondary btn-sm" id="btnDone">Done</button>
+             <button type="button" class="btn btn-outline-secondary btn-sm" id="btnCancel">Cancel</button>
+
+        </div>
+
     </div>
 
 </div>
@@ -808,14 +831,14 @@
                     <h2>Total Sales</h2>
                     <img src="assets/images/sales_icon.png" alt="">
                 </div>
-                <h1 id="totSales">25</h1>
+                <h1 id="totSales">55000</h1>
             </div>
             <div id="frame3">
                 <div id="frame31">
                     <h2>Total Profit</h2>
                     <img src="assets/images/profit_icon.png" alt="">
                 </div>
-                <h1>25</h1>
+                <h1>42500</h1>
             </div>
         </div>
         <div class="col col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12" id="adminCol2">
@@ -824,14 +847,14 @@
                     <h2>Most Sale Item</h2>
                     <img src="assets/images/shoe_icon.png" alt="">
                 </div>
-                <h1>25</h1>
+                <h1>Women's Casual Shoe</h1>
             </div>
             <div id="frame5">
                 <div id="frame51">
                     <h2>Most Sale Item Qty</h2>
                     <img src="assets/images/qty_icon.png" alt="">
                 </div>
-                <h1>25</h1>
+                <h1>7</h1>
             </div>
         </div>
         <div class="col col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" id="adminCol3">
@@ -852,6 +875,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <!--    <script src="sweetalert2/dist/sweetalert2.min.js"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
 
 <script src="./controller/CustomerController.js"></script>
 <script src="./controller/EmployeeController.js"></script>

@@ -643,7 +643,7 @@ div>.form-control{
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-#frame2>div,#frame4>div{
+#frame2>div,#frame5>div{
     width: 20vw;
     height: 10vh;
     background-color: white;
@@ -653,7 +653,7 @@ div>.form-control{
 
 }
 
-#frame3>div,#frame5>div{
+#frame3>div,#frame4>div{
     width: 20vw;
     height: 10vh;
     background-color: #9C82BE;
@@ -707,7 +707,7 @@ div>.form-control{
 #frame4{
     width: 20vw;
     height: 48vh;
-    background-color: #9C82BE;
+    background-color: white;
     opacity: 60%;
     position: relative;
     border-radius: 40px;
@@ -719,7 +719,7 @@ div>.form-control{
 #frame5{
     width: 20vw;
     height: 30vh;
-    background-color: white;
+    background-color: #9C82BE;
     opacity: 60%;
     position: relative;
     border-radius: 40px;
@@ -747,16 +747,21 @@ div>.form-control{
     right: 0;
     left: 0;
     top: 15vh;
-    left: 2vw;
+    /*left: 1vw;*/
     margin: auto;
-    font-size: xxx-large;
+    font-size: xx-large;
     font-family: "Pacifico", cursive;
     font-weight: bolder;
     font-style: normal;
 }
 
 #frame4>h1{
-    top: 23vh;
+    top: 20vh;
+    left: -4vw;
+}
+
+#frame5>h1{
+    left: 3vw;
 }
 
 #mostSalePic{
@@ -779,6 +784,21 @@ div>.form-control{
 #logout:hover{
     color: #59308C;
     background-color: white;
+}
+
+#salesBal{
+    background-color: #BBA6D6;
+    width: 35vw;
+    height: 60vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: 9999;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 /*#saleSec:hover{*/

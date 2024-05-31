@@ -50,36 +50,36 @@ $("#btnSave").on('click' , ()=>{
 
             if (pay_method === "Cash") {
 
-                // Convert the JS object to a JSON
-                let salesJSON = JSON.stringify(salesObject);
-                console.log('salesJSON: ', salesJSON);
-                // AJAX - JQuery
-                $.ajax({
-                    url: `${servletUrlSaveSales}`,
-                    type: "POST",
-                    data: salesJSON,
-                    headers: {"Content-Type": "application/json", "authorization": "Bearer "+localStorage.getItem("AuthToken")},
-                    success: (res) => {
-                        console.log(JSON.stringify(res));
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Saved'
-                        })
-                        // Swal.fire({
-                        //     width: '225px',
-                        //     position: 'top',
-                        //     icon: 'success',
-                        //     title: 'Saved!',
-                        //     showConfirmButton: false,
-                        //     timer: 2000
-                        // });
-                        // $("#customer_btns>button[type='button']").eq(3).click();
-                        $("#btnReset").click();
+                Swal.fire({
+                    title: "Payment",
+                    position: 'top',
+                    html: `
+               <h4>Total : </h4><h4 id="tot"></h4>                 
+               <input id="swal-input1" class="swal2-input" type="number" placeholder="paid amount">
+               <h4>Balance : </h4><h4 id="bal"></h4>
+               `,
+                    preConfirm: async () => {
+
+                        const tot = $("#totPrice").val();
+                        console.log("totPrice here : "+total);
+
+                        const totElement = document.getElementById("tot");
+                        totElement.textContent = "Total: " + total;
+
+
+                        const amount = document.getElementById('swal-input1').value;
+
+                        // Calculate and display balance
+                        let balance = tot - amount;
+                        const balanceElement = document.getElementById("bal");
+                        balanceElement.textContent = "Balance: " + balance;
+
+                        // Your login validation logic goes here
+                        // ... (rest of your code)
                     },
-                      error: (err) => {
-                      console.error(err);
-                      }
+                    // ... (rest of Swal.fire configuration)
                 });
+
             } else {
                Swal.fire({
                title: "Card Payments",
@@ -111,50 +111,46 @@ $("#btnSave").on('click' , ()=>{
                     cancelButtonText: "Cancel",
                     allowOutsideClick: () => !Swal.isLoading()
                     }).then((result) => {
-                    if (result.isConfirmed) {
-                    // Handle successful login
-                    const {digits, bank} = result.value;
-                    // Replace this with your actual login functionality
-                    // This example just shows a success message
-                    // Swal.fire({
-                    //     title: 'Login Successful!',
-                    //     text: `Welcome, ${email}`,
-                    //     icon: 'success'
-                    // });
-                    // document.querySelector('.swal2-container').style.zIndex = '9999';
-                    let salesJSON = JSON.stringify(salesObject);
-                    console.log('salesJSON: ', salesJSON);
-                    // AJAX - JQuery
-                    $.ajax({
-                        url: `${servletUrlSaveSales}`,
-                        type: "POST",
-                        data: salesJSON,
-                        headers: {"Content-Type": "application/json", "authorization": "Bearer "+localStorage.getItem("AuthToken")},
-                    success: (res) => {
-                    console.log(JSON.stringify(res));
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Saved'
-                    })
+                        if (result.isConfirmed) {
+                        // Handle successful login
+                        const {digits, bank} = result.value;
+                            // Convert the JS object to a JSON
+                            let salesJSON = JSON.stringify(salesObject);
+                            console.log('salesJSON: ', salesJSON);
+                            // AJAX - JQuery
+                            $.ajax({
+                                url: `${servletUrlSaveSales}`,
+                                type: "POST",
+                                data: salesJSON,
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "authorization": "Bearer " + localStorage.getItem("AuthToken")
+                                },
+                                success: (res) => {
+                                    console.log(JSON.stringify(res));
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Saved'
+                                    })
+                                    // Swal.fire({
+                                    //     width: '225px',
+                                    //     position: 'top',
+                                    //     icon: 'success',
+                                    //     title: 'Saved!',
+                                    //     showConfirmButton: false,
+                                    //     timer: 2000
+                                    // });
+                                    // $("#customer_btns>button[type='button']").eq(3).click();
+                                    $("#btnReset").click();
+                                },
+                                error: (err) => {
+                                    console.error(err);
+                                }
+                            });
 
-                    // Swal.fire({
-                    //     width: '225px',
-                    //     position: 'top',
-                    //     icon: 'success',
-                    //     title: 'Saved!',
-                    //     showConfirmButton: false,
-                    //     timer: 2000
-                    // });
-                    // $("#customer_btns>button[type='button']").eq(3).click();
-                    $("#btnReset").click();
-                    },
-                    error: (err) => {
-                        console.error(err);
-                    }
-                });
                 }
             });
-            }
+            }//card else
     }else {
             Toast.fire({
                 icon: 'error',
@@ -162,6 +158,88 @@ $("#btnSave").on('click' , ()=>{
             })
     }
 });
+
+
+
+
+
+//
+// Swal.fire({
+//     title: "Payment",
+//     position: 'top',
+//     html: `
+//                                <h4>Balance : </h4><h4 id="bal"></h4>
+//                                <input id="swal-input2" class="swal2-input" type="password" placeholder="paid amount">
+//                                <h4>Balance : </h4><h4 id="bal"></h4>
+//                                `,
+//     preConfirm: async () => {
+//         const digi = document.getElementById('swal-input1').value;
+//         const bank = document.getElementById('swal-input2').value;
+//         // Your login validation logic goes here
+//         // Replace this with your actual authentication mechanism
+//         if (!digi.length == 4) {
+//             return Swal.showValidationMessage('Please enter valid card details');
+//         }
+//         // if (!isValidEmail(email)) {
+//         //     return Swal.showValidationMessage('Please enter a valid email address');
+//         // }
+//         // if (password.length < 8) {
+//         //     return Swal.showValidationMessage('Password must be at least 8 characters long');
+//         // }
+//         // If validation passes, return an object with email and password
+//         return {digi, bank};
+//     },
+//     showCancelButton: true,
+//     confirmButtonText: "Done",
+//     cancelButtonText: "Cancel",
+//     allowOutsideClick: () => !Swal.isLoading()
+// }).then((result) => {
+//     if (result.isConfirmed) {
+//
+//
+//         let salesJSON = JSON.stringify(salesObject);
+//         console.log('salesJSON: ', salesJSON);
+//
+//         // AJAX - JQuery
+//         $.ajax({
+//             url: `${servletUrlSaveSales}`,
+//             type: "POST",
+//             data: salesJSON,
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "authorization": "Bearer " + localStorage.getItem("AuthToken")
+//             },
+//             success: (res) => {
+//                 console.log(JSON.stringify(res));
+//                 Toast.fire({
+//                     icon: 'success',
+//                     title: 'Saved'
+//                 })
+//
+//                 // Swal.fire({
+//                 //     width: '225px',
+//                 //     position: 'top',
+//                 //     icon: 'success',
+//                 //     title: 'Saved!',
+//                 //     showConfirmButton: false,
+//                 //     timer: 2000
+//                 // });
+//                 // $("#customer_btns>button[type='button']").eq(3).click();
+//                 $("#btnReset").click();
+//             },
+//             error: (err) => {
+//                 console.error(err);
+//             }
+//         });
+//
+//     }
+// });
+
+
+
+
+
+
 
 
 $("#btnUpdate").on('click' , ()=>{
@@ -222,6 +300,8 @@ $("#btnUpdate").on('click' , ()=>{
         Swal.fire({
             title: "Admin Login",
             position: 'top',
+            background: '#bba6d6',
+            confirmButtonColor: '#785B9F',
             html: `
     <p>Sales updates are allowed only for admins!</p>
     <input id="swal-input1" class="swal2-input" placeholder="Email">
@@ -582,10 +662,15 @@ $("#itemQty").on("input", function() {
     console.log("Item Qty" + itemQty);
     let totPrice = unitPrice*itemQty;
 
+    total = totPrice;
+
+    console.log("total is here: "+total);
+
     console.log("Tot Price" + totPrice);
     $("#totPrice").val(totPrice);
 });
 
+let total = null;
 
 $("#itemDesc").on("input", function() {
 
